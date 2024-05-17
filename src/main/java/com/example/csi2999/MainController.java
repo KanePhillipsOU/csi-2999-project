@@ -1,15 +1,24 @@
 package com.example.csi2999;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ch.qos.logback.core.model.Model;
 
+@Controller
 public class MainController {
     
     @RequestMapping("/")
-    public String home(Model model) {
+    public String home() {
 
-      return "index.html";
+      return "index";
+      
+    }
+
+    @RequestMapping("/about")
+    public String about() {
+
+      return "about";
+      
     }
 
 }

@@ -1,0 +1,17 @@
+.column {
+    float: left;
+    width: 33.33%;
+    font-family: "Garamond", serif;
+  }
+  
+   
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  } 
+
+  .title {
+    font-family: "Garamond", serif;
+    /*background-color: #DFDFDF; */
+  }

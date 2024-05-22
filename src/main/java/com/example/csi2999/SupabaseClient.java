@@ -9,7 +9,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +26,14 @@ public class SupabaseClient {
 
 
 
-    public JSONObject getReservations(){
-        return new JSONObject();
+    public JSONArray getReservations(){
+
+        return makeHTTPGETRequest("Reservation");
+
     }
 
-    public JSONObject getSites(){
-        return new JSONObject();
+    public JSONArray getSites(){
+        return makeHTTPGETRequest("Site");
     }
 
     public void createCustomer(){
@@ -41,12 +43,12 @@ public class SupabaseClient {
     public void createReservation(){
 
     }
-    //change to private
-    public JSONObject makeHTTPGETRequest(String tableName){
 
+    private JSONArray makeHTTPGETRequest(String tableName){
+
+        JSONArray jsonArr = null;
 
         try{
-            System.out.println("url: " +this.url);
             HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI(url + "/rest/v1/" + tableName))
             .timeout(Duration.ofSeconds(10))
@@ -58,8 +60,8 @@ public class SupabaseClient {
             .build()
             .send(request, BodyHandlers.ofString());
 
-            System.out.println("response: " + response.body());
 
+            jsonArr = new JSONArray(response.body());
 
         }
          catch(URISyntaxException e){
@@ -69,6 +71,6 @@ public class SupabaseClient {
 
         }
 
-        return new JSONObject();
+        return jsonArr;
     }
 }

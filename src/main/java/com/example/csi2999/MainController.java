@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
+
 @Controller
 public class MainController {
 
@@ -17,9 +18,7 @@ public class MainController {
   @RequestMapping(method = RequestMethod.GET, value = "/")
   public String startup() {
     
-
-    
-    supabaseClient.makeHTTPGETRequest("Customer");
+    System.out.println(supabaseClient.getSites());
 
     return "reservations";  //will navigate to home, but for sake of readability take to reservations for now
     

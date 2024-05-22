@@ -13,6 +13,8 @@ public class MainController {
   @RequestMapping(method = RequestMethod.GET, value = "/")
   public String startup() {
 
+    new SupabaseClient().makeHTTPGETRequest("Customer");
+
     return "reservations";  //will navigate to home, but for sake of readability take to reservations for now
     
   }

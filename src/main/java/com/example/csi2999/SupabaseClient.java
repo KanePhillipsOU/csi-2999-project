@@ -49,7 +49,7 @@ public class SupabaseClient {
         try{
             System.out.println("url: " +this.url);
             HttpRequest request = HttpRequest.newBuilder()
-            .uri(new URI(url + "/" + tableName))
+            .uri(new URI(url + "/rest/v1/" + tableName))
             .timeout(Duration.ofSeconds(10))
             .headers("Content-Type", "application/json", "apikey", apiKey, "Authorization", "Bearer " + authToken)
             .GET()
@@ -59,7 +59,8 @@ public class SupabaseClient {
             .build()
             .send(request, BodyHandlers.ofString());
 
-            System.out.println("response: " + response);
+            System.out.println("response: " + response.body());
+
 
         }
          catch(URISyntaxException e){

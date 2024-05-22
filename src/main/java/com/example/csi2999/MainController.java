@@ -1,5 +1,6 @@
 package com.example.csi2999;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
+  @Autowired
+  private final SupabaseClient supabaseClient = new SupabaseClient();
+
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/")
   public String startup() {
+    
 
-    new SupabaseClient().makeHTTPGETRequest("Customer");
+    
+    supabaseClient.makeHTTPGETRequest("Customer");
 
     return "reservations";  //will navigate to home, but for sake of readability take to reservations for now
     

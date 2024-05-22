@@ -13,15 +13,19 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
+
 @Service
 public class SupabaseClient {
 
-    @Value("${supabase.url: j}")
+    @Value("${supabase.url}")
     private String url;
     @Value("${supabase.apikey}")
     private String apiKey;
     @Value("${supabase.service_role}") 
     private String authToken;
+
+
 
     public JSONObject getReservations(){
         return new JSONObject();

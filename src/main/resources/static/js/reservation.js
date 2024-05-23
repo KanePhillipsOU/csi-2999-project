@@ -5,6 +5,9 @@ function makeReservation(){
 
     event.preventDefault()
 
+    // Add code here that prevents this from going through if the
+    // user does not agree to the terms
+
     fetch("/reservation",{
         method: 'post',
         headers:{'Content-Type': 'application/json'},

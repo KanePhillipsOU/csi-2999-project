@@ -1,7 +1,12 @@
 package com.example.csi2999;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,7 +21,7 @@ public class MainController {
 
 
   @RequestMapping(method = RequestMethod.GET, value = "/")
-  public String startup() {
+  public String getStartup() {
     
     System.out.println(supabaseClient.getSites());
 
@@ -25,30 +30,53 @@ public class MainController {
   }
     
     @RequestMapping(method = RequestMethod.GET, value = "/home")
-    public String home() {
+    public String getHome() {
 
       return "home";   //I will get rid od this method later too
       
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/about")
-    public String about() {
+    public String getAbout() {
 
       return "about";
       
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/moreparks")
-    public String moreparks() {
+    public String getMoreParks() {
 
       return "moreparks";
     }
       
 
-       @RequestMapping(method = RequestMethod.GET, value = "/reservations")
-    public String reservations() {
+    @RequestMapping(method = RequestMethod.GET, value = "/reservations")
+    public String getReservations() {
 
       return "reservations"; 
+    } 
+
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/search")
+    public String getSearch() {
+
+      return "search"; 
+    } 
+
+  
+    @RequestMapping(method = RequestMethod.POST, value = "/reservation", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> postReservation(@RequestBody ReservationForm reservationForm) {
+
+      System.out.println("First Name: " + reservationForm.getFirstName());
+
+      
+      // store reservation and customer in the db
+
+
+      // assuming everything went okay
+      ResponseEntity<String> response = new ResponseEntity<>("Data successfully stored in the database.", HttpStatus.OK);
+
+      return response; 
     } 
 
 

@@ -60,6 +60,8 @@ public class MainController {
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public String getSearch() {
 
+      // Get the search results and generate an HTML page with them
+
       return "search"; 
     } 
 

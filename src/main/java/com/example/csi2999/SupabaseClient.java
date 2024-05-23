@@ -28,12 +28,12 @@ public class SupabaseClient {
 
     public JSONArray getReservations(){
 
-        return makeHTTPGETRequest("Reservation");
+        return makeHttpGetRequest("Reservation");
 
     }
 
     public JSONArray getSites(){
-        return makeHTTPGETRequest("Site");
+        return makeHttpGetRequest("Site");
     }
 
     public void createCustomer(){
@@ -44,7 +44,7 @@ public class SupabaseClient {
 
     }
 
-    private JSONArray makeHTTPGETRequest(String tableName){
+    private JSONArray makeHttpGetRequest(String tableName){
 
         JSONArray jsonArr = null;
 

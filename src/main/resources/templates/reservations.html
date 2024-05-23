@@ -45,7 +45,7 @@
         </p> 
         <center>
         <form action="/search" method="get" class="form-example">
-            <div class="form-example">
+            <!-- <div class="form-example">
               <label for="name">Enter your name: </label>
               <input type="text" name="name" id="name" required />
             </div>
@@ -57,22 +57,29 @@
                 <label for="phone">Enter your phone number: </label>
                 <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
 
-            </div>
+            </div> -->
+
+                <label for="start-date">Start date:</label>
+                <input type="date" id="start-date" name="startDate">
+                <label for="start-date">End date:</label>
+                <input type="date" id="end-date" name="endDate">
+
+
                 <label for="sites">Select a type of campsite:</label>
 
-<select name="sites" id="sites">
-  <option value="fullHookup">Full hookup</option>
-  <option value="waterAndElectric">Water and electric</option>
-  <option value="rusticSites">Rustic site</option>
-</select>
+                <select name="sites" id="sites">
+                  <option value="fullHookup">Full hookup</option>
+                  <option value="waterAndElectric">Water and electric</option>
+                  <option value="rusticSites">Rustic site</option>
+                </select>
                 
 
 
-                        <fieldset>
+                        <!-- <fieldset>
                           <legend>Do you agree with the rules and regulations?</legend>
                           <label><input type="radio" name="radio" value="yes" /> Yes</label>
                           <label><input type="radio" name="radio" value="no" /> No</label>
-                        </fieldset>
+                        </fieldset> -->
 
                       <div class="form-example">
                         <input type="submit" value="Search availability" />

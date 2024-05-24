@@ -56,6 +56,12 @@ public class MainController {
       return "reservations"; 
     } 
 
+    @RequestMapping(method = RequestMethod.GET, value = "/pagelayout")
+    public String getPageLayout() {
+
+      return "pagelayout"; 
+    } 
+
     
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public String getSearch() {

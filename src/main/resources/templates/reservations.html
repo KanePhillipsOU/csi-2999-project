@@ -43,26 +43,14 @@
       <img src="images/mockmap.jpg" alt="mockmap" style="width:1000px;height:562px;">
     </center>
         </p> 
-        <center>
-        <form action="/search" method="get" class="form-example">
-            <!-- <div class="form-example">
-              <label for="name">Enter your name: </label>
-              <input type="text" name="name" id="name" required />
-            </div>
-            <div class="form-example">
-              <label for="email">Enter your email: </label>
-              <input type="email" name="email" id="email" required />
-            </div>
-              <div class="form-example">
-                <label for="phone">Enter your phone number: </label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
-
-            </div> -->
+        <center>   <!-- cut form.example class-->
+        <form action="/search" method="get" >
 
                 <label for="start-date">Start date:</label>
-                <input type="date" id="start-date" name="startDate">
+                <input type="date" id="start-date" name="startDate" required />
                 <label for="start-date">End date:</label>
-                <input type="date" id="end-date" name="endDate">
+                <input type="date" id="end-date" name="endDate" required />
+                <br>
 
 
                 <label for="sites">Select a type of campsite:</label>
@@ -72,17 +60,9 @@
                   <option value="waterAndElectric">Water and electric</option>
                   <option value="rusticSites">Rustic site</option>
                 </select>
-                
-
-
-                        <!-- <fieldset>
-                          <legend>Do you agree with the rules and regulations?</legend>
-                          <label><input type="radio" name="radio" value="yes" /> Yes</label>
-                          <label><input type="radio" name="radio" value="no" /> No</label>
-                        </fieldset> -->
 
                       <div class="form-example">
-                        <input type="submit" value="Search availability" />
+                       <br> <input type="submit" value="Search availability" />
                       </center>
               </div>
             </div>

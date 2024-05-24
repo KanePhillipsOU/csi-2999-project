@@ -13,7 +13,10 @@ import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * This class is for all things related to interacting with the Supabase database.
+ * Requests are sent to Supabase using PostgREST.
+ */
 @Service
 public class SupabaseClient {
 
@@ -26,24 +29,41 @@ public class SupabaseClient {
 
 
 
+    /**
+     * @return All revervations in the database.
+     */
     public JSONArray getReservations(){
 
         return makeHttpGetRequest("Reservation");
 
     }
 
+    /**
+     * @return All sites in the database.
+     */
     public JSONArray getSites(){
         return makeHttpGetRequest("Site");
     }
 
+    /**
+     * stub
+     */
     public void createCustomer(){
 
     }
 
+    /**
+     * stub
+     */
     public void createReservation(){
 
     }
 
+    /**
+     * Sends a GET request to the database to get all data back from a table.
+     * @param tableName - The name of the table you want the data from, such as "Customer".
+     * @return A JSONArray conaining all rows in the table.
+     */
     private JSONArray makeHttpGetRequest(String tableName){
 
         JSONArray jsonArr = null;

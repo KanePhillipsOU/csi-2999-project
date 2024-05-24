@@ -11,6 +11,7 @@ public class ReservationForm {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private Boolean agreedToTerms;
 
 
 
@@ -31,6 +32,11 @@ public class ReservationForm {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+
+    public Boolean getAgreedToTerms() {
+        return agreedToTerms;
     }
 
     

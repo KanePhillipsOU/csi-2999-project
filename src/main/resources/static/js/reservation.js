@@ -5,8 +5,6 @@ function makeReservation(){
 
     event.preventDefault()
 
-    // Add code here that prevents this from going through if the
-    // user does not agree to the terms
 
     fetch("/reservation",{
         method: 'post',
@@ -15,7 +13,8 @@ function makeReservation(){
             firstName: document.querySelector('#first-name').value,
             lastName: document.querySelector('#last-name').value,
             email: document.querySelector('#email').value,
-            phoneNumber: document.querySelector('#phone').value
+            phoneNumber: document.querySelector('#phone').value,
+            agreedToTerms: document.querySelector('#agreed-to-terms').checked
         })
     })
     .then(response => response.text())

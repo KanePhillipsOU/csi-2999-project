@@ -25,7 +25,7 @@ public class MainController {
     
     System.out.println(supabaseClient.getSites());
 
-    return "reservations";  //will navigate to home, but for sake of readability take to reservations for now
+    return "home";  //will navigate to home, but for sake of readability take to reservations for now
     
   }
     

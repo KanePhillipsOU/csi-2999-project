@@ -25,14 +25,14 @@ public class MainController {
     
     System.out.println(supabaseClient.getSites());
 
-    return "home";  //will navigate to home, but for sake of readability take to reservations for now
+    return "home"; 
     
   }
     
     @RequestMapping(method = RequestMethod.GET, value = "/home")
     public String getHome() {
 
-      return "home";   //I will get rid od this method later too
+      return "home"; 
       
     }
 

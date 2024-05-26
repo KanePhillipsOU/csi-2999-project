@@ -126,8 +126,8 @@
 .siteElement {
   border: 5px white; /* this border isn't working?? */
   padding:10px;
-  background-color: #D1D1D1;
-  border-style: solid;
+  background-color: #cfcfcf;
+  border-style: ridge;
   object-fit: contain;
   position: relative;
   overflow: hidden;
@@ -143,8 +143,6 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border: 5px #ACCEF8;  /* for visualization, delete later */
-  border-style: solid;
 }
 
 .boxtext {

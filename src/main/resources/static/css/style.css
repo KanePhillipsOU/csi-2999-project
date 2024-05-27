@@ -148,3 +148,9 @@
 .boxtext {
   position: relative;
 }
+
+.mapImg {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}

@@ -5,7 +5,7 @@ let sliderCurrentIndex = 0
 setSilderClock()
 
 function setSilderClock(){
-    setTimeout(changeImageOnSlider, 3000)
+    setTimeout(changeImageOnSlider, 4000)
 }
 
 
@@ -13,7 +13,8 @@ function changeImageOnSlider(){
 
     for(let i = 0; i < slider.children.length; i++){
         slider.children[i].style.zIndex = 0
-        slider.children[i].style.opacity = 0
+        // slider.children[i].style.opacity = 0
+        slider.children[i].style.transition = 'none'
     }
 
     if (sliderCurrentIndex + 1 < slider.children.length){
@@ -24,7 +25,11 @@ function changeImageOnSlider(){
     
 
     slider.children[sliderCurrentIndex].style.zIndex = 1
+    
     slider.children[sliderCurrentIndex].style.opacity = 1
+
+    slider.children[sliderCurrentIndex].style.transition = 'all 2s'
+
 
     setSilderClock()
 

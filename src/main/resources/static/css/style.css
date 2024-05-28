@@ -47,6 +47,8 @@
   
   .textbody {
     /* font-family: "Garamond", serif; */
+    padding-left: 20px;
+    padding-right: 20px;
     /*background-color: #DFDFDF; */
   }
 

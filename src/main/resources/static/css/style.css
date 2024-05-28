@@ -206,10 +206,10 @@ main{
 }
 
 #home-body{
-  background-image: url("/images/leaaves-bg.png");
+  background-image: url("/images/bg-img-3.jpg");
   background-repeat: no-repeat;
   /* background-size: cover; */
-  background-size: 3000px 360px;
+  background-size: 2000px 360px;
 
 }
 

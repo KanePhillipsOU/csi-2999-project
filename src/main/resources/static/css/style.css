@@ -209,21 +209,22 @@ main{
   background-image: url("/images/leaaves-bg.png");
   background-repeat: no-repeat;
   /* background-size: cover; */
-  background-size: 3000px 400px;
+  background-size: 3000px 360px;
 
 }
 
 .section-over-bg-img{
   margin: auto;
-  max-width: 400px;
+  max-width: 700px;
   display: block;
   text-align: center;
-  margin-top: 70px;
+  margin-top: 50px;
   margin-bottom: 140px;
-  background: rgba(0, 0, 0, .7);
+  background: rgba(45, 45, 45, .8);
   color: white;
   font-size: x-large;
   padding: 40px 50px;
+  border-radius: 1%;
 }
 
 @media screen and (max-width: 900px)  {

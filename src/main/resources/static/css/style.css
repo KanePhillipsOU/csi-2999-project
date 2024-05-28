@@ -1,11 +1,12 @@
 * {
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .column {
     float: left;
     width: 33.33%;
-    font-family: "Garamond", serif; 
+    /* font-family: "Garamond", serif;  */
   }
   
    
@@ -16,7 +17,7 @@
   } 
 
   .title {
-    font-family: "Garamond", serif;
+    /* font-family: "Garamond", serif; */
     /*background-color: #DFDFDF; */
   }
   form.form-example {
@@ -45,7 +46,7 @@
   }
   
   .textbody {
-    font-family: "Garamond", serif;
+    /* font-family: "Garamond", serif; */
     /*background-color: #DFDFDF; */
   }
 
@@ -70,7 +71,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    font-family: "Garamond", serif;
+    /* font-family: "Garamond", serif; */
   }
   
   /* Change the color of links on hover */
@@ -92,7 +93,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    font-family: "Garamond", serif;
+    /* font-family: "Garamond", serif; */
 
   }
 
@@ -110,6 +111,7 @@
 .main {
     display: flex;
     flex: 1;
+    
 }
 /* content on left side of page */
 .sidebar {
@@ -157,30 +159,22 @@
 
 
 .img-slider{
-  /* margin: auto; */
-  max-width: 700px;
-  height: 500px;
-  position: relative;
+  width: 100%;
+  height: 100%;
+  position: absolute;
   overflow: hidden;
+  top: 0;
+  left: 0;
 }
 
 .img-slider > img {
   position: absolute;
-  /* top: 0;
-  left: 0; */
-
-  /* margin-left: auto;
-  margin-right: auto;
+  top: 0;
   left: 0;
-  right: 0;
-  text-align: center; */
 
-  /* top: 50%;  
-  left: 50%; 
-  transform: translate(-50%, -50%); */
 
   width: 100%;
-  min-height: 100%;
+  height: 100vh;
   opacity: 0;
   z-index: 0;
 
@@ -200,34 +194,31 @@
   margin: auto;
 }
 
-main{
-  margin: auto;
-  width: 95%;
+
+#home-image-container{
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
 
-#home-body{
-  background-image: url("/images/bg-img-3.jpg");
-  background-repeat: no-repeat;
-  /* background-size: cover; */
-  background-size: 2000px 360px;
+#home-image-text-block{
+  position:absolute;
+  height: 100vh;
+  width: 600px;
+  background: rgba(20, 100, 18, .7);
+  z-index: 2;
+  right: 0;
 
 }
-
-.section-over-bg-img{
-  margin: auto;
-  max-width: 700px;
-  display: block;
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 140px;
-  background: rgba(45, 45, 45, .8);
+#home-image-text-block > * {
+  padding: 40px 80px;
   color: white;
   font-size: x-large;
-  padding: 40px 50px;
-  border-radius: 1%;
+  line-height: 50px;
 }
 
-@media screen and (max-width: 900px)  {
+
+/* @media screen and (max-width: 900px)  {
   .split-section{
     display: block;
   }
@@ -244,4 +235,4 @@ main{
   .img-slider{
     height: 350px;
   }
-}
+} */

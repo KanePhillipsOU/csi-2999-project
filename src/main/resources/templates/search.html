@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,11 +34,11 @@
                 <div class ="siteElement"> 
                    <img class="img" src="images/1.jpg" alt="Site 1" >
                    <div class="boxtext" >Site 1
-                    <br> price goes here
-                    <br> description goes here
-                    <br> water and electric and whatnot 
-                    <br> test
-                    <br> test
+                    <br th:text="${price1}">
+                    <br th:text="${description1}">
+                    <br th:text="${water1}">
+                    <br th:text="${electric1}">
+                    <br th:text="${reservation1}">
                     <div class="form-example" onclick="loadSelectedSite()">
                         <br> <input type="submit" value="Select" />
                         </div>
@@ -48,11 +48,11 @@
                 <div class ="siteElement"> 
                     <img class="img" src="images/2.jpg" alt="Site 1">
                     <div class="boxtext" >Site 2
-                     <br> price goes here
-                     <br> description goes here
-                     <br> water and electric and whatnot 
-                     <br> test
-                     <br> test
+                     <br th:text="${price2}"> price goes here
+                     <br th:text="${description2}"> description goes here
+                     <br th:text="${water2}"> water and electric and whatnot 
+                     <br th:text="${electric2}"> test
+                     <br th:text="${reservation2}"> test
                      <div class="form-example" onclick="loadSelectedSite()">
                         <br> <input type="submit" value="Select" />
                         </div>
@@ -63,11 +63,11 @@
                  <div class ="siteElement"> 
                     <img class="img" src="images/3.jpg" alt="Site 1">
                     <div class="boxtext" >Site 3
-                     <br> price goes here
-                     <br> description goes here
-                     <br> water and electric and whatnot 
-                     <br> test
-                     <br> test
+                     <br th:text="${price3}"> price goes here
+                     <br th:text="${description3}"> description goes here
+                     <br th:text="${water3}"> water and electric and whatnot 
+                     <br th:text="${electric3}"> test
+                     <br th:text="${reservation3}"> test
                      <div class="form-example" onclick="loadSelectedSite()">
                         <br> <input type="submit" value="Select" />
                         </div>

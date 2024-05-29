@@ -190,6 +190,7 @@
 
 .split-section{
   display: flex;
+  padding: 20px;
   
 }
 .split-section > div{

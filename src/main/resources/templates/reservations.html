@@ -10,54 +10,52 @@
 </head>
 <body>
 
+  <div class="topnav">
+      <a href="home">Home</a>
+      <a href="about">About</a>
+      <a class= "active" href="reservations">Reservations</a>
+      <a href="moreparks"> More Parks</a>
+      <b> Bug Free Campground</b>
+      </div>
 
-
-<div class="topnav">
-    <a href="home">Home</a>
-    <a href="about">About</a>
-    <a class= "active" href="reservations">Reservations</a>
-    <a href="moreparks"> More Parks</a>
-    <b> Bug Free Campground</b>
-    </div>
-
-    
-    <h1 style = "text-align: center;">Reservations</h1>
-</div>
-
-<div class="textbody" >
-    <h3> 
+      
+      <h1 style = "text-align: center;">Reservations</h1>
   </div>
+  <main>
+    <div class="textbody" >
+        <h3> 
+      </div>
 
-    </h3>
-    <center>
-    <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap" style="width:1000px;height:562px;">
-  </center>
-      </p> 
-      <center>   <!-- cut form.example class-->
-      <form action="/search" method="get" >
+        </h3>
+        <center>
+        <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap" style="width:1000px;height:562px;">
+      </center>
+          </p> 
+          <center>   <!-- cut form.example class-->
+          <form action="/search" method="get" >
 
-              <label for="start-date">Start date:</label>
-              <input type="date" id="start-date" name="startDate" required />
-              <label for="start-date">End date:</label>
-              <input type="date" id="end-date" name="endDate" required />
-              <br>
+                  <label for="start-date">Start date:</label>
+                  <input type="date" id="start-date" name="startDate" required />
+                  <label for="start-date">End date:</label>
+                  <input type="date" id="end-date" name="endDate" required />
+                  <br>
 
 
-              <label for="sites">Select a type of campsite:</label>
+                  <label for="sites">Select a type of campsite:</label>
 
-              <select name="sites" id="sites">
-                <option value="fullHookup">Full hookup</option>
-                <option value="waterAndElectric">Water and electric</option>
-                <option value="rusticSites">Rustic site</option>
-              </select>
+                  <select name="sites" id="sites">
+                    <option value="fullHookup">Full hookup</option>
+                    <option value="waterAndElectric">Water and electric</option>
+                    <option value="rusticSites">Rustic site</option>
+                  </select>
 
-                    <div class="form-example">
-                     <br> <input type="submit" value="Search availability" />
-                    </center>
-            </div>
-          </div>
-        </form>
-        
+                        <div class="form-example">
+                        <br> <input type="submit" value="Search availability" />
+                        </center>
+                </div>
+              </div>
+            </form> 
+        </main>
         
 
         <footer>

@@ -25,7 +25,7 @@ public class MainController {
   @RequestMapping(method = RequestMethod.GET, value = "/")
   public String getStartup() {
     
-    System.out.println(supabaseClient.getSites());
+    // System.out.println(supabaseClient.getSites());
 
     return "home"; 
     

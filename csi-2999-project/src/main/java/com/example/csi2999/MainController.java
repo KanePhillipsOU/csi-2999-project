@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.http.ResponseEntity;
 
 @Controller
 public class MainController {
@@ -61,14 +63,16 @@ public class MainController {
     } 
     
     @PostMapping("/reservation")
-    public String createReservation(ReservationForm reservationForm, Model model) {
+    public ResponseEntity<String> createReservation(@RequestBody ReservationForm reservationForm) {
+
+
         boolean success = supabaseClient.createReservation(reservationForm);
         if (success) {
-            model.addAttribute("message", "Reservation created successfully!");
-            return "success";
+            // model.addAttribute("message", "Reservation created successfully!");
+            return ResponseEntity.ok("Reservation successful.");
         } else {
-            model.addAttribute("message", "Failed to create reservation.");
-            return "error";
+            // model.addAttribute("message", "Failed to create reservation.");
+            return ResponseEntity.status(500).body("Reservation could not be processed.");
         }
     }
 

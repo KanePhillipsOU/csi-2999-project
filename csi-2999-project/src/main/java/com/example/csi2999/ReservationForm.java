@@ -6,7 +6,7 @@ public class ReservationForm {
     private String firstName;
     private String lastName;
     private String email;
-    private int phoneNumber;
+    private long phoneNumber;
     private boolean agreedToTerms;
 
     // Getter and setter for firstName
@@ -37,11 +37,11 @@ public class ReservationForm {
     }
 
     // Getter and setter for phoneNumber
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class SupabaseClient {
     
-    @Value("${spring_supabase_url}")
+    @Value("${supabase.url}")
     private String url;
 
-    @Value("${spring_supabase_apikey}")
+    @Value("${supabase.apikey}")
     private String apiKey;
 
-    @Value("${spring_supabase_service_role}") 
+    @Value("${supabase.service_role}") 
     private String authToken;
     
     public JSONArray getReservations() {
@@ -34,11 +34,11 @@ public class SupabaseClient {
     }
     
     private String reservationFormToJson(ReservationForm reservationForm) {
-        return "{\"firstName\":\"" + reservationForm.getFirstName() + "\"," +
-                "\"lastName\":\"" + reservationForm.getLastName() + "\"," +
+        return "{\"first_name\":\"" + reservationForm.getFirstName() + "\"," +
+                "\"last_name\":\"" + reservationForm.getLastName() + "\"," +
                 "\"email\":\"" + reservationForm.getEmail() + "\"," +
-                "\"phoneNumber\":\"" + reservationForm.getPhoneNumber() + "\"," +
-                "\"agreedToTerms\":" + reservationForm.isAgreedToTerms() +
+                "\"phone_number\":\"" + reservationForm.getPhoneNumber() + "\"" +
+                // "\"agreedToTerms\":" + reservationForm.isAgreedToTerms() +
                 "}";
     }
     

@@ -30,7 +30,7 @@
                 
                 <!-- Iterate over sites to display each site dynamically -->
                 <div th:each="site : ${sites}" class="siteElement"> 
-                    <img class="img" th:src="@{'/images/' + ${site.picture_name}}" alt="Site Image" >
+                    <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image" >
                     <div class="boxtext">
                         Site <span th:text="${site.site_id}">Site ID</span>
                         <br> Price: <span th:text="${site.cost_per_day}">price goes here</span>

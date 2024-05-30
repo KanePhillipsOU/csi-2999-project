@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -90,31 +91,31 @@ public class MainController {
     }
 
     private List<Site> convertJsonArrayToSiteList(JSONArray siteArray) {
-      List<Site> siteList = new ArrayList<>();
-      for (int i = 0; i < siteArray.length(); i++) {
-          JSONObject siteJson = siteArray.getJSONObject(i);
-          Site site = new Site();
-          site.setSite_id(siteJson.getInt("site_id"));
-          site.setName(siteJson.getString("name"));
-          site.setDescription(siteJson.getString("description"));
-  
-          if (siteJson.isNull("cost_per_day")) {
-              site.setCost_per_day("N/A");
-          } else {
-              site.setCost_per_day(String.valueOf(siteJson.getInt("cost_per_day")));
-          }
-  
-          site.setFull_hookup(siteJson.getBoolean("full_hookup"));
-          site.setRustic(siteJson.getBoolean("rustic"));
-          site.setWater_and_electric(siteJson.getBoolean("water_and_electric"));
-          
-          // Set image_name property
-          site.setPicture_name(siteJson.getString("picture_name"));
-          
-          siteList.add(site);
-      }
-      return siteList;
-  }
+        List<Site> siteList = new ArrayList<>();
+        for (int i = 0; i < siteArray.length(); i++) {
+            JSONObject siteJson = siteArray.getJSONObject(i);
+            Site site = new Site();
+            site.setSite_id(siteJson.getInt("site_id"));
+            site.setName(siteJson.getString("name"));
+            site.setDescription(siteJson.getString("description"));
+
+            if (siteJson.isNull("cost_per_day")) {
+                site.setCost_per_day("N/A");
+            } else {
+                site.setCost_per_day(String.valueOf(siteJson.getInt("cost_per_day")));
+            }
+
+            site.setFull_hookup(siteJson.getBoolean("full_hookup"));
+            site.setRustic(siteJson.getBoolean("rustic"));
+            site.setWater_and_electric(siteJson.getBoolean("water_and_electric"));
+            
+            // Set image_name property
+            site.setPicture_name(siteJson.getString("picture_name"));
+            
+            siteList.add(site);
+        }
+        return siteList;
+    }
 
     private List<Site> filterSitesByAmenities(List<Site> siteList, String amenities) {
         if (amenities == null || amenities.isEmpty()) {
@@ -122,23 +123,33 @@ public class MainController {
         }
 
         String[] amenitiesArray = amenities.split(",");
-        return siteList.stream()
+        System.out.println("Filtering amenities: " + Arrays.toString(amenitiesArray));
+
+        List<Site> filteredList = siteList.stream()
                 .filter(site -> {
+                    boolean matches = true;
                     for (String amenity : amenitiesArray) {
                         switch (amenity.trim().toLowerCase()) {
                             case "fullhookup":
-                                if (!site.isFull_hookup()) return false;
+                                matches = matches && site.isFull_hookup();
                                 break;
                             case "rustic":
-                                if (!site.isRustic()) return false;
+                                matches = matches && site.isRustic();
                                 break;
                             case "waterandelectric":
-                                if (!site.isWater_and_electric()) return false;
+                                matches = matches && site.isWater_and_electric();
                                 break;
+                            default:
+                                matches = false;
                         }
+                        if (!matches) break;
                     }
-                    return true;
+                    System.out.println("Site: " + site.getName() + ", matches: " + matches);
+                    return matches;
                 })
                 .collect(Collectors.toList());
+
+        System.out.println("Filtered sites: " + filteredList);
+        return filteredList;
     }
 }

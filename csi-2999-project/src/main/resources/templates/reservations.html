@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .topnav b {
+            float: right;
+            padding: 14px 16px;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .textbody {
+            margin-bottom: 20px;
+        }
+
+        .mapImg {
+            max-width: 100%;
+            height: 500px;
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: sticky;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="topnav">
+      <a href="home">Home</a>
+      <a href="about">About</a>
+      <a class="active" href="reservations">Reservations</a>
+      <a href="moreparks">More Parks</a>
+      <b>Bug Free Campground</b>
+  </div>
+
+  <h1 style="text-align: center;">Reservations</h1>
+
+  <main>
+    <div class="textbody">
+        <center>
+          <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap">
+        </center>
+    </div>
+    
+    <center>
+      <form id="reservationForm" action="/search" method="get">
+        <label for="dateRange">Select your stay dates:</label>
+        <input type="text" id="dateRange" name="dateRange" required />
+        
+        <label for="sites">Select a type of campsite:</label>
+        <select name="sites" id="sites">
+          <option value="fullHookup">Full hookup</option>
+          <option value="waterAndElectric">Water and electric</option>
+          <option value="rusticSites">Rustic site</option>
+        </select>
+
+        <input type="submit" value="Search availability" />
+      </form>
+    </center>
+  </main>
+
+  <footer>
+    <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project.</p>
+  </footer>
+
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      flatpickr("#dateRange", {
+        mode: "range",
+        dateFormat: "Y-m-d",
+        minDate: "today"
+      });
+      
+      document.getElementById('reservationForm').addEventListener('submit', function(event) {
+        const dateRangeInput = document.getElementById('dateRange').value.split(' to ');
+        
+        if (dateRangeInput.length !== 2) {
+          alert('Please select a valid date range.');
+          event.preventDefault();
+          return;
+        }
+        
+        const startDate = new Date(dateRangeInput[0]);
+        const endDate = new Date(dateRangeInput[1]);
+        
+        if (startDate >= endDate) {
+          alert('End date must be after the start date.');
+          event.preventDefault();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

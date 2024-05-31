@@ -10,111 +10,84 @@
 </head>
 <body>
 
-
-
 <div class="topnav">
     <a href="home">Home</a>
     <a href="about">About</a>
     <a href="reservations">Reservations</a>
     <a href="moreparks"> More Parks</a>
     <b> Bug Free Campground</b>
-    </div>
-
-    
-    <h1 style = "text-align: center;">Search Results</h1>
 </div>
 
-    <main>
-        <div class="container">
-            <div class="main">
-                <div class="sidebar">
+<h1 style="text-align: center;">Search Results</h1>
+
+<main>
+    <div class="container">
+        <div class="main">
+            <div class="sidebar">
+                <center>
+                    <h1>Available Sites</h1>
+                </center>
+                
+                <!-- Iterate over sites to display each site dynamically -->
+                <div th:each="site : ${sites}" class="siteElement"> 
+                    <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image" >
+                    <div class="boxtext">
+                        Site <span th:text="${site.site_id}">Site ID</span>
+                        <br> Price: <span th:text="${site.cost_per_day}">price goes here</span>
+                        <br> Description: <span th:text="${site.description}">description goes here</span>
+                        <br>
+                        <!-- Conditional rendering for site type -->
+                        <div th:if="${site.full_hookup}">
+                            Type: Full Hookup
+                        </div>
+                        <div th:if="${site.rustic}">
+                            Type: Rustic
+                        </div>
+                        <div th:if="${site.water_and_electric}">
+                            Type: Water and Electric
+                        </div>
+                        <!-- End conditional rendering -->
+                        <div class="form-example" onclick="loadSelectedSite()">
+                            <br> <input type="submit" value="Select" />
+                        </div>
+                    </div> 
+                </div>
+                <!-- End iteration -->
+
+                <script src="js/loadSelectedSite.js"></script>
+
+            </div>
+            <div class="content">
+                <h1>Selected site goes here</h1>
+
+                <form>
                     <center>
-                    <h1> Available Sites</h1>
+                        <label for="first-name">Enter your first name: </label>
+                        <input type="text" name="firstName" id="first-name" required />
+                        <label for="last-name">Enter your last name: </label>
+                        <input type="text" name="lastName" id="last-name" required />
+                        <label for="email">Enter your email: </label>
+                        <input type="email" name="email" id="email" required />
+                        <label for="phone">Enter your phone number: </label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
+                        <fieldset>
+                            <legend>Do you agree with the rules and regulations?</legend>
+                            <label><input type="radio" id="agreed-to-terms" name="radio" value="yes" /> Yes</label>
+                            <label><input type="radio" name="radio" value="no" /> No</label>
+                        </fieldset>
+                        <input id="reservation-submit-btn" type="submit" value="Make Reservation" />
                     </center>
-                    <div class ="siteElement"> 
-                    <img class="img" src="images/1.jpg" alt="Site 1" >
-                    <div class="boxtext" >Site 1
-                        <br th:text="${price1}">
-                        <br th:text="${description1}">
-                        <br th:text="${water1}">
-                        <br th:text="${electric1}">
-                        <br th:text="${reservation1}">
-                        <div class="form-example" onclick="loadSelectedSite()">
-                            <br> <input type="submit" value="Select" />
-                            </div>
-                        </div> 
-                    </div>
+                </form>
 
-                    <div class ="siteElement"> 
-                        <img class="img" src="images/2.jpg" alt="Site 1">
-                        <div class="boxtext" >Site 2
-                        <br th:text="${price2}"> price goes here
-                        <br th:text="${description2}"> description goes here
-                        <br th:text="${water2}"> water and electric and whatnot
-                        <br th:text="${electric2}"> test
-                        <br th:text="${reservation2}"> test
-                        <div class="form-example" onclick="loadSelectedSite()">
-                            <br> <input type="submit" value="Select" />
-                            </div>
-                        </div> 
-                    </div>
-
-
-                    <div class ="siteElement"> 
-                        <img class="img" src="images/3.jpg" alt="Site 1">
-                        <div class="boxtext" >Site 3
-                        <br th:text="${price3}"> price goes here
-                        <br th:text="${description3}"> description goes here
-                        <br th:text="${water3}"> water and electric and whatnot
-                        <br th:text="${electric3}"> test
-                        <br th:text="${reservation3}"> test
-                        <div class="form-example" onclick="loadSelectedSite()">
-                            <br> <input type="submit" value="Select" />
-                            </div>
-                        </div> 
-                    </div>
-
-                    <script src="js/loadSelectedSite.js"></script>
-
-                </div>
-                <div class="content">
-                    <h1> selected site goes here </h1>
-
-                    <br>
-                    <form>
-                        <center>
-                            <label for="first-name">Enter your first name: </label>
-                            <input type="text" name="firstName" id="first-name" required />
-                            <label for="last-name">Enter your last name: </label>
-                            <input type="text" name="lastName" id="last-name" required />
-                    
-                            <label for="email">Enter your email: </label>
-                            <input type="email" name="email" id="email" required />
-                    
-                            <label for="phone">Enter your phone number: </label>
-                            <input type="tel" id="phone" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
-                                
-                            <fieldset>
-                                <legend>Do you agree with the rules and regulations?</legend>
-                                <label><input type="radio" id="agreed-to-terms" name="radio" value="yes" /> Yes</label>
-                                <label><input type="radio" name="radio" value="no" /> No</label>
-                            </fieldset>
-                    
-                            <input id="revervation-submit-btn" type="submit" value="Make Reservation" />
-                        </center>
-                        </form>
-
-                        <script src="js/reservation.js"></script>
-                </div>
+                <script src="js/reservation.js"></script>
             </div>
-            </div>
-    </main>
-        
+        </div>
+    </div>
+</main>
 
-        <footer>
-            <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project. </p>
-          </footer>
+<footer>
+    <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project.</p>
+</footer>
 
-
-  </body>
-  </html>
+</body>
+</html>

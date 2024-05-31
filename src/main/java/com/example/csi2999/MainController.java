@@ -1,113 +1,155 @@
 package com.example.csi2999;
 
-
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
 
-  @Autowired
-  private final SupabaseClient supabaseClient = new SupabaseClient();
+    @Autowired
+    private SupabaseClient supabaseClient;
 
+    @GetMapping("/")
+    public String getStartup() {
+        System.out.println(supabaseClient.getSites());
+        return "home";
+    }
 
-
-  @RequestMapping(method = RequestMethod.GET, value = "/")
-  public String getStartup() {
-    
-    System.out.println(supabaseClient.getSites());
-
-    return "home"; 
-    
-  }
-    
-    @RequestMapping(method = RequestMethod.GET, value = "/home")
+    @GetMapping("/home")
     public String getHome() {
-
-      return "home"; 
-      
+        return "home";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/about")
+    @GetMapping("/about")
     public String getAbout() {
-
-      return "about";
-      
+        return "about";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/moreparks")
+    @GetMapping("/moreparks")
     public String getMoreParks() {
-
-      return "moreparks";
+        return "moreparks";
     }
-      
 
-    @RequestMapping(method = RequestMethod.GET, value = "/reservations")
+    @GetMapping("/reservations")
     public String getReservations() {
-
-      return "reservations"; 
-    } 
-
-    @RequestMapping(method = RequestMethod.GET, value = "/pagelayout")
-    public String getPageLayout() {
-
-      return "pagelayout"; 
-    } 
-
-    
-    @RequestMapping(method = RequestMethod.GET, value = "/search")
-    public String getSearch(Model model1, Model model2, Model model3) {
-
-      // Get the search results and generate an HTML page with them
-
-
-      //Hard-coded attributes for example sites to test thymeleaf
-      model1.addAttribute("name1", "Fake Site 1");
-      model1.addAttribute("price1", 0.01);
-      model1.addAttribute("description1", "fake site description");
-      model1.addAttribute("water1", "Has Water");
-      model1.addAttribute("electric1", "Has Electricity");
-      model1.addAttribute("reservation1", "Not currently reserved");
-      model2.addAttribute("name2", "Fake Site 2");
-      model2.addAttribute("price2", 0.02);
-      model3.addAttribute("name3", "Fake Site 3");
-      model3.addAttribute("price3", 0.03);
-      return "search"; 
-    } 
-
-  
-    @RequestMapping(method = RequestMethod.POST, value = "/reservation", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> postReservation(@RequestBody ReservationForm reservationForm) {
-
-      System.out.println("First Name: " + reservationForm.getFirstName());
-
-      
-      // store reservation and customer in the db
-
-
-      // assuming everything went okay
-      ResponseEntity<String> response = new ResponseEntity<>("Data successfully stored in the database.", HttpStatus.OK);
-
-      return response; 
-    } 
-
-
-    //Thymeleaf test
-    @RequestMapping(method = RequestMethod.GET, value = "/thymeleaftest")
-    public String getThymeTest(Model model){
-      model.addAttribute("message", "main controller message");
-      return "thymeleaftest";
+        return "reservations";
     }
 
+    @GetMapping("/pagelayout")
+    public String getPageLayout() {
+        return "pagelayout";
+    }
 
+    @GetMapping("/search")
+    public String getSearch(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String sites, Model model) {
+        // Fetch sites from the Supabase client
+        JSONArray siteArray = supabaseClient.getSites();
+        System.out.println("Fetched sites: " + siteArray.toString());
+
+        // Convert JSONArray to a list of Site objects
+        List<Site> siteList = convertJsonArrayToSiteList(siteArray);
+        System.out.println("Converted sites: " + siteList.toString());
+
+        // Filter the siteList based on the amenities specified in the 'sites' parameter
+        List<Site> filteredSites = filterSitesByAmenities(siteList, sites);
+        System.out.println("Filtered sites: " + filteredSites.toString());
+
+        // Add the filtered sites to the model
+        model.addAttribute("sites", filteredSites);
+        System.out.println("Model attributes: " + model.asMap().toString());
+        return "search";
+    }
+
+    @PostMapping("/reservation")
+    public ResponseEntity<String> postReservation(@RequestBody ReservationForm reservationForm) {
+        System.out.println("First Name: " + reservationForm.getFirstName());
+
+        // store reservation and customer in the db
+
+        ResponseEntity<String> response = new ResponseEntity<>("Data successfully stored in the database.", HttpStatus.OK);
+        return response;
+    }
+
+    @GetMapping("/thymeleaftest")
+    public String getThymeTest(Model model) {
+        model.addAttribute("message", "main controller message");
+        return "thymeleaftest";
+    }
+
+    private List<Site> convertJsonArrayToSiteList(JSONArray siteArray) {
+        List<Site> siteList = new ArrayList<>();
+        for (int i = 0; i < siteArray.length(); i++) {
+            JSONObject siteJson = siteArray.getJSONObject(i);
+            Site site = new Site();
+            site.setSite_id(siteJson.getInt("site_id"));
+            site.setName(siteJson.getString("name"));
+            site.setDescription(siteJson.getString("description"));
+
+            if (siteJson.isNull("cost_per_day")) {
+                site.setCost_per_day("N/A");
+            } else {
+                site.setCost_per_day(String.valueOf(siteJson.getInt("cost_per_day")));
+            }
+
+            site.setFull_hookup(siteJson.getBoolean("full_hookup"));
+            site.setRustic(siteJson.getBoolean("rustic"));
+            site.setWater_and_electric(siteJson.getBoolean("water_and_electric"));
+            
+            // Set image_name property
+            site.setPicture_name(siteJson.getString("picture_name"));
+            
+            siteList.add(site);
+        }
+        return siteList;
+    }
+
+    private List<Site> filterSitesByAmenities(List<Site> siteList, String amenities) {
+        if (amenities == null || amenities.isEmpty()) {
+            return siteList;
+        }
+
+        String[] amenitiesArray = amenities.split(",");
+        System.out.println("Filtering amenities: " + Arrays.toString(amenitiesArray));
+
+        List<Site> filteredList = siteList.stream()
+                .filter(site -> {
+                    boolean matches = true;
+                    for (String amenity : amenitiesArray) {
+                        switch (amenity.trim().toLowerCase()) {
+                            case "fullhookup":
+                                matches = matches && site.isFull_hookup();
+                                break;
+                            case "rustic":
+                                matches = matches && site.isRustic();
+                                break;
+                            case "waterandelectric":
+                                matches = matches && site.isWater_and_electric();
+                                break;
+                            default:
+                                matches = false;
+                        }
+                        if (!matches) break;
+                    }
+                    System.out.println("Site: " + site.getName() + ", matches: " + matches);
+                    return matches;
+                })
+                .collect(Collectors.toList());
+
+        System.out.println("Filtered sites: " + filteredList);
+        return filteredList;
+    }
 }

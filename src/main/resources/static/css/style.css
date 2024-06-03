@@ -333,3 +333,19 @@ input[type=text] {
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+#start-date{
+  height: 24px;
+  font-size: 18px;
+}
+
+#end-date{
+  height: 24px;
+  font-size: 18px;
+}
+
+#sites{
+  height: 24px;
+  width: 190px;
+  font-size: 18px;
+}

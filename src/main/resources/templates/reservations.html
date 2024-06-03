@@ -28,20 +28,21 @@
 
         </h3>
         <center>
-        <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap" style="width:1000px;height:562px;">
+        <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap" style="width:1000px;height:562px;" title="Map of the campground">
       </center>
           </p> 
           <center>   <!-- cut form.example class-->
+          <h3>Please enter the details for your reservation below:</h3>
           <form action="/search" method="get" >
 
-                  <label for="start-date">Start date:</label>
+                  <label for="start-date"><b>Start date:</b></label>
                   <input type="date" id="start-date" name="startDate" required />
-                  <label for="start-date">End date:</label>
+                  <label for="start-date"><b>End date:</b></label>
                   <input type="date" id="end-date" name="endDate" required />
                   <br>
 
 
-                  <label for="sites">Select a type of campsite:</label>
+                  <label for="sites"><b>Select a type of campsite:</b></label>
 
                   <select name="sites" id="sites">
                     <option value="fullHookup">Full hookup</option>
@@ -52,7 +53,7 @@
                         <div class="form-example">
                         <br>
                       </center>
-                        <button type="submit" class="block">Search Availability</button>
+                        <button type="submit" class="block"><b>Search Availability</b></button>
                         <br>
                         
                 </div>

@@ -30,7 +30,7 @@
                 
                 <!-- Iterate over sites to display each site dynamically -->
                 <div th:each="site : ${sites}" class="siteElement"> 
-                    <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image" >
+                    <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image" title="Image of site">
                     <div class="boxtext">
                         Site <span th:text="${site.site_id}">Site ID</span>
                         <br> Price: <span th:text="${site.cost_per_day}">price goes here</span>
@@ -59,16 +59,17 @@
             </div>
             <div class="content">
                 <h1>Selected site goes here</h1>
-
+                
                 <form>
                     <center>
-                        <label for="first-name">Enter your first name: </label>
+                        <h3>Please enter the required information to make a reservation</h3>
+                        <label for="first-name"><b>Enter your first name:</b></label>
                         <input type="text" name="firstName" id="first-name" required />
-                        <label for="last-name">Enter your last name: </label>
+                        <label for="last-name"><b>Enter your last name:</b></label>
                         <input type="text" name="lastName" id="last-name" required />
-                        <label for="email">Enter your email: </label>
+                        <label for="email"><b>Enter your email:</b></label>
                         <input type="email" name="email" id="email" required />
-                        <label for="phone">Enter your phone number: </label>
+                        <label for="phone"><b>Enter your phone number:</b></label>
                         <input type="tel" id="phone" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
                         <fieldset>
                             <legend>Do you agree with the rules and regulations?</legend>

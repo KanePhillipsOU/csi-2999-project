@@ -330,3 +330,34 @@ input[type=text] {
   width: 190px;
   font-size: 18px;
 }
+
+
+.parks-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.parks-container > *{
+  max-width: 500px;
+  margin: 50px 50px;
+  background-color: #f4f9ff;
+  padding: 40px 40px;
+  border-radius: 5px;
+  border: solid rgba(0, 0, 0, .1) 3px;
+  box-shadow: 0px 0 4px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+.parks-container > *:hover{
+  transform: scale(1.02); 
+}
+.parks-container img { 
+  margin: auto;
+  display: block;
+  width: 400px;
+  height: 250px;
+  border-radius: 5px;
+}
+.parks-container a {
+  text-decoration: none;
+  color: black;
+}

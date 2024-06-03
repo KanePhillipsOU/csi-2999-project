@@ -338,6 +338,7 @@ input[type=text] {
   flex-wrap: wrap;
 }
 .parks-container > *{
+  
   max-width: 500px;
   margin: 50px 50px;
   background-color: #f4f9ff;
@@ -345,9 +346,12 @@ input[type=text] {
   border-radius: 5px;
   border: solid rgba(0, 0, 0, .1) 3px;
   box-shadow: 0px 0 4px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  opacity: .90;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  -webkit-transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 .parks-container > *:hover{
+  opacity: 1;
   transform: scale(1.02); 
 }
 .parks-container img { 

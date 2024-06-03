@@ -74,14 +74,16 @@ public class MainController {
         return "search";
     }
 
+        
     @PostMapping("/reservation")
-    public ResponseEntity<String> postReservation(@RequestBody ReservationForm reservationForm) {
-        System.out.println("First Name: " + reservationForm.getFirstName());
+    public ResponseEntity<String> createReservation(@RequestBody ReservationForm reservationForm) {
 
-        // store reservation and customer in the db
-
-        ResponseEntity<String> response = new ResponseEntity<>("Data successfully stored in the database.", HttpStatus.OK);
-        return response;
+        boolean success = supabaseClient.createReservation(reservationForm);
+        if (success) {
+            return ResponseEntity.ok("Reservation successful.");
+        } else {
+            return ResponseEntity.status(500).body("Reservation could not be processed.");
+        }
     }
 
     @GetMapping("/thymeleaftest")

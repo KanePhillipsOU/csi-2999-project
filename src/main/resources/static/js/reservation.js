@@ -1,4 +1,4 @@
-document.querySelector('#revervation-submit-btn').addEventListener('click', makeReservation)
+document.querySelector('#reservation-submit-btn').addEventListener('click', makeReservation)
 
 
 function makeReservation(){

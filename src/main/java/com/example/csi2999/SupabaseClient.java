@@ -33,6 +33,10 @@ public class SupabaseClient {
         return makeHttpGetRequest("Site");
     }
 
+    public JSONArray getCustomers() {
+        return makeHttpGetRequest("Customer");
+    }
+
     private JSONArray makeHttpGetRequest(String tableName) {
         JSONArray jsonArr = null;
 
@@ -59,5 +63,38 @@ public class SupabaseClient {
         }
 
         return jsonArr;
+    }
+
+    public boolean createReservation(ReservationForm reservationForm) {
+        String requestBody = reservationFormToJson(reservationForm);
+        return makeHttpPostRequest("Customer", requestBody);
+    }
+
+    private String reservationFormToJson(ReservationForm reservationForm) {
+        return "{\"first_name\":\"" + reservationForm.getFirstName() + "\"," +
+                "\"last_name\":\"" + reservationForm.getLastName() + "\"," +
+                "\"email\":\"" + reservationForm.getEmail() + "\"," +
+                "\"phone_number\":\"" + reservationForm.getPhoneNumber() + "\"" +
+                "}";
+    }
+    
+    private boolean makeHttpPostRequest(String tableName, String requestBody) {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(url + "/rest/v1/" + tableName))
+                    .timeout(Duration.ofSeconds(10))
+                    .headers("Content-Type", "application/json", "apikey", apiKey, "Authorization", "Bearer " + authToken)
+                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                    .build();
+                    
+            HttpResponse<String> response = HttpClient.newBuilder()
+                    .build()
+                    .send(request, HttpResponse.BodyHandlers.ofString());
+
+            return response.statusCode() == 201; // 201 indicates successful creation
+        } catch (URISyntaxException | IOException | InterruptedException e) {
+            System.out.println("Error: " + e);
+            return false;
+        }
     }
 }

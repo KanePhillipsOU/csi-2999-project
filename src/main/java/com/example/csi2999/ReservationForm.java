@@ -4,40 +4,58 @@ package com.example.csi2999;
  * This class is used to represent the form information that 
  * is used for making a reservation
  */
+
 public class ReservationForm {
-
-
+    
     private String firstName;
     private String lastName;
     private String email;
-    private String phoneNumber;
-    private Boolean agreedToTerms;
+    private long phoneNumber;
+    private boolean agreedToTerms;
 
-
-
+    // Getter and setter for firstName
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
+    // Getter and setter for lastName
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
+    // Getter and setter for email
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getPhoneNumber() {
+    // Getter and setter for phoneNumber
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-    public Boolean getAgreedToTerms() {
+    // Getter and setter for agreedToTerms
+    public boolean isAgreedToTerms() {
         return agreedToTerms;
     }
 
-    
+    public void setAgreedToTerms(boolean agreedToTerms) {
+        this.agreedToTerms = agreedToTerms;
+    }
+
 }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -34,12 +36,14 @@
           <center>   <!-- cut form.example class-->
           <h3>Please enter the details for your reservation below:</h3>
           <form action="/search" method="get" >
+            
 
-                  <label for="start-date"><b>Start date:</b></label>
-                  <input type="date" id="start-date" name="startDate" required />
-                  <label for="start-date"><b>End date:</b></label>
-                  <input type="date" id="end-date" name="endDate" required />
-                  <br>
+                  <input type="hidden" id="start-date" name="startDate" /> <!-- line 41 and 42 must be here else the program fails-->
+                  <input type="hidden" id="end-date" name="endDate" />   <!-- I have no idea why-->
+
+                  <form action="/search" method="get">
+                    <label for="dateRange">Select your stay dates:</label>
+                    <input type="text" id="dateRange" name="dateRange" required />
 
 
                   <label for="sites"><b>Select a type of campsite:</b></label>
@@ -67,6 +71,40 @@
         </footer>
 
           
+
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    flatpickr("#dateRange", {
+      mode: "range",
+      dateFormat: "m-d-Y",
+      minDate: "today"
+    });
+    
+    document.getElementById('reservationForm').addEventListener('submit', function(event) {
+      const dateRangeInput = document.getElementById('dateRange').value.split(' to ');
+      
+      if (dateRangeInput.length !== 2) {
+        alert('Please select a valid date range.');
+        event.preventDefault();
+        return;
+      }
+      
+      const startDate = new Date(dateRangeInput[1]);
+      const endDate = new Date(dateRangeInput[2]);  //FIXME messing around, should be [0] [1]
+      
+      if (startDate >= endDate) {
+        alert('End date must be after the start date.');
+        event.preventDefault();
+      }
+    });
+  });
+</script>
+
+
+
+
 
   </body>
   </html>

@@ -90,7 +90,7 @@
     color: black;
   }
 
-  @media screen and (max-width: 600px) { /* for mobile */
+  @media screen and (max-width: 630px) { /* for mobile */
     .topnav a {
       float: none;
       width: 100%;
@@ -119,6 +119,7 @@
     display: flex;
     min-height: 100vh; /* Ensure the container spans the full height of the screen */
     flex-direction: column;
+  /*  align-items: center; */
 }
 .main {
     margin: 0;
@@ -129,13 +130,12 @@
 .sidebar {
     background-color: #f0f0f0;
     float: none;
-    width: auto;
+    width: auto;  /*FIXME set to auto if bad */
 }
 /* content on right side of page */
 .content {
     margin:0;
     padding:0;
- /* D1D1D1 */
 }
 
 .siteElement {
@@ -161,7 +161,8 @@
 }
 
 @media screen and (min-width:600px) {
-  .sidebar {width: 500px; float: left;}
+  .sidebar {width: 500px; float: left; margin-left: auto; margin-right:auto; display: block;  align-items: center;}
+  .content {width: auto;align-items: center;}
 }
 
 .boxtext {
@@ -406,13 +407,13 @@ input[type="text"],
       input[type="submit"] {
           width: 100%;
           padding: 10px;
-          background-color: #4CAF50;
+          background-color: #ACCEF8;
           border: none;
           border-radius: 5px;
-          color: white;
+          color: black;
           font-size: 16px;
       }
 
       input[type="submit"]:hover {
-          background-color: #45a049;
+          background-color: #ccc;
       }

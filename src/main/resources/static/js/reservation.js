@@ -17,10 +17,15 @@ function makeReservation(){
             agreedToTerms: document.querySelector('#agreed-to-terms').checked
         })
     })
-    .then(response => response.json())
-    .then(responseObj => {
-        console.log(responseObj.success) // will be true if everything went okay
-        console.log(responseObj.message)
+    .then(response => {
+        if(response.ok){
+            // run pop up function
+        } else {
+            // inform the user that something went wrong
+        }
+        return response.text()})
+    .then(responseMessage => {
+        console.log(responseMessage)
     })
     .catch(err => {
         console.log(`error ${err}`)

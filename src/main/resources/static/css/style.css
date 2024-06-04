@@ -265,8 +265,15 @@ margin: auto;
 .aboutPageContainer {
   display: flex;
   flex-direction: column;
-  background-color:#f0f0f0;
-  padding: 20px;
+  background-color:white; /* f0f0f0 */
+  
+}
+
+.rulesAndRegsContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  
 }
 
 .circularFrame {

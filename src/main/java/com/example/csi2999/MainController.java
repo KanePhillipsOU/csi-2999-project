@@ -79,10 +79,15 @@ public class MainController {
     public ResponseEntity<String> createReservation(@RequestBody ReservationForm reservationForm) {
 
         boolean success = supabaseClient.createReservation(reservationForm);
+        JSONObject jsonRespoonse = new JSONObject();
         if (success) {
-            return ResponseEntity.ok("Reservation successful.");
+            jsonRespoonse.put("success", "true");
+            jsonRespoonse.put("message", "Reservation successful.");
+            return ResponseEntity.ok(jsonRespoonse.toString());
         } else {
-            return ResponseEntity.status(500).body("Reservation could not be processed.");
+            jsonRespoonse.put("success", "false");
+            jsonRespoonse.put("message", "Reservation could not be processed.");
+            return ResponseEntity.status(500).body(jsonRespoonse.toString());
         }
     }
 

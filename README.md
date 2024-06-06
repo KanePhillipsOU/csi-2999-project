@@ -1,1 +1,2 @@
-# csi-2999-project
+# CSI 2999 Project
+This is a five member group project done for Oakland University's Sophomore Project class.

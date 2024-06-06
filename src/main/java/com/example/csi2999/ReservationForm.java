@@ -13,6 +13,7 @@ public class ReservationForm {
     private long phoneNumber;
     private boolean agreedToTerms;
 
+
     // Getter and setter for firstName
     public String getFirstName() {
         return firstName;

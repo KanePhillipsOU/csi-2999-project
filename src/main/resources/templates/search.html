@@ -19,6 +19,12 @@
 </div>
 
 <h1 style="text-align: center;">Search Results</h1>
+<h2 style="text-align: center;">Dates Selected:</h2>
+<center>
+    <p>
+        <span id="start-date"></span> to <span id="end-date"></span>
+    </p>
+</center>
 
 <main>
     <div class="container">
@@ -47,14 +53,12 @@
                             Type: Water and Electric
                         </div>
                         <!-- End conditional rendering -->
-                        <div class="form-example" onclick="loadSelectedSite()">
-                            <br> <input type="submit" value="Select" />
+                        
+                        <br> <button class="selectBtn" id="[[${site.site_id}]]" type="button" onclick="selectSite('[[${site.site_id}]]')">Select</button>
                         </div>
                     </div> 
                 </div>
                 <!-- End iteration -->
-
-                <script src="js/loadSelectedSite.js"></script>
 
             </div>
             <div class="content">
@@ -75,6 +79,11 @@
                             <label><input type="radio" id="agreed-to-terms" name="radio" value="yes" /> Yes</label>
                             <label><input type="radio" name="radio" value="no" /> No</label>
                         </fieldset>
+                        
+                        <input type="hidden" id="reservation-start-date" name="reservationStartDate">
+                        <input type="hidden" id="reservation-end-date" name="reservationEndDate">
+                        <input type="hidden" id="selectedSiteId" name="selectedSiteId">
+
                         <input id="reservation-submit-btn" type="submit" value="Make Reservation" />
                     </center>
                 </form>
@@ -87,6 +96,29 @@
 <footer>
     <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project.</p>
 </footer>
+
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve the start date and end date from the URL query parameters
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const startDate = urlParams.get('startDate');
+        const endDate = urlParams.get('endDate');
+        
+        // Display the start date and end date on the page
+        document.getElementById('start-date').textContent = startDate;
+        document.getElementById('end-date').textContent = endDate;
+
+        // Set hidden input values
+        document.getElementById('reservation-start-date').value = startDate;
+        document.getElementById('reservation-end-date').value = endDate;
+    });
+    
+    function select_siteId(siteID){
+        
+        document.getElementById('selectedSiteId').value = selectedSiteId; 
+    }
+</script>
 
 <script src="js/reservation.js"></script>
 

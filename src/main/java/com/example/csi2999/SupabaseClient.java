@@ -69,12 +69,17 @@ public class SupabaseClient {
         String requestBody = reservationFormToJson(reservationForm);
         return makeHttpPostRequest("Customer", requestBody);
     }
-
+    
     private String reservationFormToJson(ReservationForm reservationForm) {
-        return "{\"first_name\":\"" + reservationForm.getFirstName() + "\"," +
+        return "{" +
+                "\"first_name\":\"" + reservationForm.getFirstName() + "\"," +
                 "\"last_name\":\"" + reservationForm.getLastName() + "\"," +
                 "\"email\":\"" + reservationForm.getEmail() + "\"," +
-                "\"phone_number\":\"" + reservationForm.getPhoneNumber() + "\"" +
+                "\"phone_number\":\"" + reservationForm.getPhoneNumber() + "\"," +
+                "\"selected_site_id\":\"" + reservationForm.getSelectedSiteId() + "\"," +
+                "\"start_date\":\"" + reservationForm.getStartDate() + "\"," +
+                "\"end_date\":\"" + reservationForm.getEndDate() + "\"," +
+                "\"agreed_to_terms\":\"" + reservationForm.isAgreedToTerms() + "\"" +
                 "}";
     }
     

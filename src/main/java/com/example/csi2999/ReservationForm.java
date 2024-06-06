@@ -1,10 +1,5 @@
 package com.example.csi2999;
 
-/**
- * This class is used to represent the form information that 
- * is used for making a reservation
- */
-
 public class ReservationForm {
     
     private String firstName;
@@ -12,7 +7,10 @@ public class ReservationForm {
     private String email;
     private long phoneNumber;
     private boolean agreedToTerms;
-
+    private int selectedSiteId;
+    private String startDate;
+    private String endDate;
+    
     // Getter and setter for firstName
     public String getFirstName() {
         return firstName;
@@ -58,4 +56,30 @@ public class ReservationForm {
         this.agreedToTerms = agreedToTerms;
     }
 
+    // Getter and setter for selectedSiteId
+    public int getSelectedSiteId() {
+        return selectedSiteId;
+    }
+
+    public void setSelectedSiteId(int selectedSiteId) {
+        this.selectedSiteId = selectedSiteId;
+    }
+
+    // Getter and setter for startDate
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    // Getter and setter for endDate
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 }

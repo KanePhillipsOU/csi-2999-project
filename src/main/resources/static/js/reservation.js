@@ -6,6 +6,7 @@ function makeReservation(){
     event.preventDefault()
 
 
+
     fetch("/reservation",{
         method: 'post',
         headers:{'Content-Type': 'application/json'},
@@ -14,7 +15,11 @@ function makeReservation(){
             lastName: document.querySelector('#last-name').value,
             email: document.querySelector('#email').value,
             phoneNumber: document.querySelector('#phone').value,
-            agreedToTerms: document.querySelector('#agreed-to-terms').checked
+            agreedToTerms: document.querySelector('#agreed-to-terms').checked,
+            startDate: document.querySelector('#reservation-start-date').value,
+            endDate: document.querySelector('#reservation-end-date').value,
+            selectedSiteId: document.querySelector('#selectedSiteId').value
+            
         })
     })
     .then(response => {

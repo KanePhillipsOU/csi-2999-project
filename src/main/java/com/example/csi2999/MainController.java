@@ -53,7 +53,7 @@ public class MainController {
     public String getPageLayout() {
         return "pagelayout";
     }
-
+    
     @GetMapping("/search")
     public String getSearch(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String sites, Model model) {
         // Fetch sites from the Supabase client

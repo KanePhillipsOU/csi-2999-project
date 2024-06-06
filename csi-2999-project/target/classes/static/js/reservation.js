@@ -1,5 +1,11 @@
 document.querySelector('#reservation-submit-btn').addEventListener('click', makeReservation)
 
+function makeReservation(){
+
+    event.preventDefault()
+
+    alert(document.querySelector('input[name="selectedSite"]:checked').value)
+
 
     // Perform form validation here
     if (!document.getElementById('reservationForm').checkValidity()) {
@@ -34,3 +40,4 @@ document.querySelector('#reservation-submit-btn').addEventListener('click', make
         // Handle errors, such as displaying an error message to the user
     });
     
+}

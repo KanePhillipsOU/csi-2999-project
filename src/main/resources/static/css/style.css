@@ -139,6 +139,7 @@
     padding: 0;
     width: 100%; 
     max-width: calc(100% - 40px); /* padding for image */
+    justify-content: center; 
 }
 
 .siteElement {
@@ -175,13 +176,15 @@
     .sidebar {
         width: 500px;
         margin-left: 0;
-        margin-right: 20px; 
+       /* margin-right: 20px; */
         margin-bottom: 0; 
+        justify-content: center; 
     }
     .content {
         width: auto;
         flex: 1; 
         max-width: 600px;
+        justify-content: center; 
     }
 }
 

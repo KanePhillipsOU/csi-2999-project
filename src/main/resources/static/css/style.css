@@ -393,9 +393,9 @@ input[type=text] {
 .parks-container img { 
   margin: auto;
   display: block;
-  width: 400px;
-  height: 250px;
-  border-radius: 5px;
+  width: 100%;  /* originally 400px */
+  height: 40%;  /* orignally 250px */
+  border-radius: 5px; /* 5px */
 }
 .parks-container a {
   text-decoration: none;

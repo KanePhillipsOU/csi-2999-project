@@ -53,12 +53,14 @@
                             Type: Water and Electric
                         </div>
                         <!-- End conditional rendering -->
-                        
-                        <br> <button class="selectBtn" id="[[${site.site_id}]]" type="button" onclick="selectSite('[[${site.site_id}]]')">Select</button>
+                        <div class="form-example" onclick="loadSelectedSite()">
+                            <br> <input type="submit" value="Select" />
                         </div>
                     </div> 
                 </div>
                 <!-- End iteration -->
+
+                <script src="js/loadSelectedSite.js"></script>
 
             </div>
             <div class="content">
@@ -79,11 +81,6 @@
                             <label><input type="radio" id="agreed-to-terms" name="radio" value="yes" /> Yes</label>
                             <label><input type="radio" name="radio" value="no" /> No</label>
                         </fieldset>
-                        
-                        <input type="hidden" id="reservation-start-date" name="reservationStartDate">
-                        <input type="hidden" id="reservation-end-date" name="reservationEndDate">
-                        <input type="hidden" id="selectedSiteId" name="selectedSiteId">
-
                         <input id="reservation-submit-btn" type="submit" value="Make Reservation" />
                     </center>
                 </form>

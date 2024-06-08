@@ -261,19 +261,26 @@
   line-height: 50px;
 }
 .img-slider {
-  animation: fadeInAnimation ease-in-out 2.7s;
+  animation: fadeInAnimation ease-in-out 2.2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-/* @keyframes fadeInAnimation {
+ @keyframes fadeInAnimation {
   0% {
-      opacity: 0;
+    filter: blur(10px);
+  }
+  6% {
+    opacity: 0;
+  }
+  25%{
+    filter: blur(7px);
   }
   100% {
-      opacity: 1;
+    opacity: 1;
+    filter: blur(0);
       
   }
-} */
+}
 
 
 .topnav, footer{

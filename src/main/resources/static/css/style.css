@@ -385,6 +385,24 @@ input[type=text] {
   opacity: .90;
   transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
   -webkit-transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  animation: 0.8s ease-out 0s 1 popOutAndFadeIn;
+}
+@keyframes popOutAndFadeIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  83% {
+    transform: scale(1.02);
+  }
+  100%{
+    transform: scale(1);
+    opacity: 0.90;
+  }
 }
 .parks-container > *:hover{
   opacity: 1;

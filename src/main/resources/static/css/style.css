@@ -502,7 +502,7 @@ input[type="text"],
       height: 100%;
   }
 
-  callform {
+  .callform {
     display: inline-block;
     text-align: left;
     padding: 20px;

@@ -73,8 +73,8 @@ public class MainController {
         System.out.println("Model attributes: " + model.asMap().toString());
         return "search";
     }
-    
-    
+
+        
     @PostMapping("/reservation")
     public ResponseEntity<String> createReservation(@RequestBody ReservationForm reservationForm) {
 

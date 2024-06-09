@@ -64,9 +64,8 @@ public class SupabaseClient {
 
         return jsonArr;
     }
-    
+
     public boolean createReservation(ReservationForm reservationForm) {
-        
         String requestBody = reservationFormToJson(reservationForm);
         return makeHttpPostRequest("Customer", requestBody);
     }
@@ -83,7 +82,6 @@ public class SupabaseClient {
                 "\"agreed_to_terms\":\"" + reservationForm.isAgreedToTerms() + "\"" +
                 "}";
     }
-    
     
     private boolean makeHttpPostRequest(String tableName, String requestBody) {
         try {

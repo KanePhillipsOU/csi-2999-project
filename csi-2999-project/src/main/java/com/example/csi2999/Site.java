@@ -11,7 +11,7 @@ public class Site {
     private String picture_name;
 
     // Getters and Setters
-    
+
     public int getSite_id() {
         return site_id;
     }
@@ -71,7 +71,7 @@ public class Site {
     public String getPicture_name() {
         return picture_name;
     }
-    
+
     public void setPicture_name(String picture_name) {
         this.picture_name = picture_name;
     }

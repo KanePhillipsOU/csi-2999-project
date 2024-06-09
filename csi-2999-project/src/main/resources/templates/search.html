@@ -9,128 +9,114 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <div class="topnav">
+        <a href="home">Home</a>
+        <a href="about">About</a>
+        <a href="reservations">Reservations</a>
+        <a href="moreparks">More Parks</a>
+        <b>Bug Free Campground</b>
+    </div>
 
-<div class="topnav">
-    <a href="home">Home</a>
-    <a href="about">About</a>
-    <a href="reservations">Reservations</a>
-    <a href="moreparks"> More Parks</a>
-    <b> Bug Free Campground</b>
-</div>
+    <h1 style="text-align: center;">Search Results</h1>
+    <h2 style="text-align: center;">Dates Selected:</h2>
+    <center>
+        <p>
+            <span id="start-date"></span> to <span id="end-date"></span>
+        </p>
+    </center>
 
-<h1 style="text-align: center;">Search Results</h1>
-<hr width="100%" size="2">
-
-<h2 style="text-align: center;">Dates Selected:</h2>
-<center>
-    <p>
-        <span id="start-date"></span> to <span id="end-date"></span>
-    </p>
-</center>
-
-<main>
-    <div class="container">
-        <div class="main">
-            <div class="sidebar">
-                <center>
-                    <h1>Available Sites</h1>
-                </center>
-                
-                <!-- Iterate over sites to display each site dynamically -->
-                <div th:each="site : ${sites}" class="siteElement"> 
-                    <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image" title="Image of site">
-                    <div class="boxtext">
-                        Site <span th:text="${site.site_id}">Site ID</span>
-                        <br> Price: <span th:text="${site.cost_per_day}">price goes here</span>
-                        <br> Description: <span th:text="${site.description}">description goes here</span>
-                        <br>
-                        <!-- Conditional rendering for site type -->
-                        <div th:if="${site.full_hookup}">
-                            Type: Full Hookup
-                        </div>
-                        <div th:if="${site.rustic}">
-                            Type: Rustic
-                        </div>
-                        <div th:if="${site.water_and_electric}">
-                            Type: Water and Electric
-                        </div>
-                        <!-- End conditional rendering -->
-                        <div class="form-example" >
-                            <input type="radio" id="selected-site-[[${site.site_id}]]" name="selectedSite" value="[[${site.site_id}]]" required/> Select
-                    </div> 
-                </div>
-                <!-- End iteration -->
-                
-                <script src="js/loadSelectedSite.js"></script>
-                
-            </div>
-            <div class="content">
-                <center>
-                <h1>Selected site goes here</h1>
-                </center>
-                <form id="reservationForm"> 
+    <main>
+        <div class="container">
+            <div class="main">
+                <div class="sidebar">
                     <center>
-                        <label for="first-name">Enter your first name: </label>
-                        <input type="text" name="firstName" id="first-name" required />
-                        <label for="last-name">Enter your last name: </label>
-                        <input type="text" name="lastName" id="last-name" required />
-                    
-                        <label for="email">Enter your email: </label>
-                        <input type="email" name="email" id="email" required />
-                    
-                        <label for="phone">Enter your phone number: </label>
-                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required />
-                                
-                        <fieldset>
-                            <legend>Do you agree with the rules and regulations?</legend>
-                            <label><input type="radio" id="agreed-to-terms" name="radio" value="yes" required /> Yes</label>
-                            <label><input type="radio" name="radio" value="no" required /> No</label>
-                        </fieldset>
-                        
-                         
-                        <input type="hidden" id="selected-site" name="selectedSite">
-                        <input type="hidden" id="reservation-start-date" name="reservationStartDate">
-                        <input type="hidden" id="reservation-end-date" name="reservationEndDate">
-                        
-                        <!-- <input id="reservation-submit-btn" type="submit" value="Make Reservation" /> -->
-                        <button id="reservation-submit-btn">Make Reservation</button>
+                        <h1>Available Sites</h1>
                     </center>
-                </form>
+
+                    <!-- Iterate over sites to display each site dynamically -->
+                    <div th:each="site : ${sites}" class="siteElement"> 
+                        <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image" title="Image of site">
+                        <div class="boxtext">
+                            Site <span th:text="${site.site_id}">Site ID</span>
+                            <br> Price: <span th:text="${site.cost_per_day}">price goes here</span>
+                            <br> Description: <span th:text="${site.description}">description goes here</span>
+
+                            <!-- Conditional rendering for site type -->
+                            <div th:if="${site.full_hookup}">
+                                Type: Full Hookup
+                            </div>
+                            <div th:if="${site.rustic}">
+                                Type: Rustic
+                            </div>
+                            <div th:if="${site.water_and_electric}">
+                                Type: Water and Electric
+                            </div>
+                            <!-- End conditional rendering -->
+
+                            <button class="selectBtn" type="button" th:onclick="'select_siteId(' + ${site.site_id} + ')'">Select</button>
+                        </div>
+                    </div> 
+                    <!-- End iteration -->
+
+                </div>
+                <div class="content">
+                    <form>
+                        <center>
+                            <h3>Please enter the required information to make a reservation</h3>
+                            <label for="first-name"><b>Enter your first name:</b></label>
+                            <input type="text" name="firstName" id="first-name" required placeholder="First Name" />
+                            <label for="last-name"><b>Enter your last name:</b></label>
+                            <input type="text" name="lastName" id="last-name" required placeholder="Last Name" />
+                            <label for="email"><b>Enter your email:</b></label>
+                            <input type="email" name="email" id="email" required placeholder="Email" />
+                            <label for="phone"><b>Enter your phone number:</b></label>
+                            <input type="tel" id="phone" name="phone" pattern="\d{10}" required placeholder="1234567890" />
+
+                            <fieldset>
+                                <legend>Do you agree with the rules and regulations?</legend>
+                                <label><input type="radio" id="agreed-to-terms" name="radio" value="yes" /> Yes</label>
+                                <label><input type="radio" name="radio" value="no" /> No</label>
+                            </fieldset>
+
+                            <input type="hidden" id="reservation-start-date" name="reservationStartDate">
+                            <input type="hidden" id="reservation-end-date" name="reservationEndDate">
+                            <input type="hidden" id="selectedSiteId" name="selectedSiteId">
+
+                            <input id="reservation-submit-btn" type="submit" value="Make Reservation" />
+                        </center>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</main>
-<footer>
-    <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project.</p>
-</footer>
+    </main>
 
-<script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Retrieve the start date and end date from the URL query parameters
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const startDate = urlParams.get('startDate');
-        const endDate = urlParams.get('endDate');
-        
-        // Display the start date and end date on the page
-        document.getElementById('start-date').textContent = startDate;
-        document.getElementById('end-date').textContent = endDate;
+    <footer>
+        <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project.</p>
+    </footer>
 
-        // Set hidden input values
-        document.getElementById('reservation-start-date').value = startDate;
-        document.getElementById('reservation-end-date').value = endDate;
-        
-        // Event listener for the radio buttons to capture the selected site
-        const radioButtons = document.querySelectorAll('input[name="selectedSite"]');
-        radioButtons.forEach(button => {
-            button.addEventListener('change', function() {
-                document.getElementById('selected-site').value = this.value;
-            });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve the start date and end date from the URL query parameters
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const startDate = urlParams.get('startDate');
+            const endDate = urlParams.get('endDate');
+
+            // Display the start date and end date on the page
+            document.getElementById('start-date').textContent = startDate;
+            document.getElementById('end-date').textContent = endDate;
+
+            // Set hidden input values
+            document.getElementById('reservation-start-date').value = startDate;
+            document.getElementById('reservation-end-date').value = endDate;
         });
-    });
-</script>
 
-<script src="js/reservation.js"></script>
+        function select_siteId(siteID) {
+            const siteIdInt = Number(siteID);
+            document.getElementById('selectedSiteId').value = siteIdInt;
+        }
+    </script>
 
+    <script src="js/reservation.js"></script>
 </body>
 </html>

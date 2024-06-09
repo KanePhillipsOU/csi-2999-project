@@ -7,7 +7,7 @@ public class ReservationForm {
     private String email;
     private long phoneNumber;
     private boolean agreedToTerms;
-    private String selectedSiteId;
+    private int selectedSiteId;
     private String startDate;
     private String endDate;
     
@@ -57,11 +57,11 @@ public class ReservationForm {
     }
 
     // Getter and setter for selectedSiteId
-    public String getSelectedSiteId() {
+    public int getSelectedSiteId() {
         return selectedSiteId;
     }
 
-    public void setSelectedSiteId(String selectedSiteId) {
+    public void setSelectedSiteId(int selectedSiteId) {
         this.selectedSiteId = selectedSiteId;
     }
 

@@ -11,6 +11,7 @@ public class ReservationForm {
     private String startDate;
     private String endDate;
     
+
     // Getter and setter for firstName
     public String getFirstName() {
         return firstName;

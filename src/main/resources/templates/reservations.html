@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,99 +9,105 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    
-    
+
+
 </head>
 
-    
-    <div class="topnav">
+
+<div class="topnav">
     <a href="home">Home</a>
     <a href="about">About</a>
     <a class="active" href="reservations">Reservations</a>
     <a href="moreparks">More Parks</a>
     <b>Bug Free Campground</b>
-    </div>
-
-    <body>
-        <div class="textbody" >
-        <center>
-    <h1>Reservations</h1>
-    </center>
-  <!--  <hr width="100%" size="2"> -->
-    <main>
- 
-      <div class="textbody" >
-        <h3> 
-      </div>
-         
-        </h3>
-        <p> Bug Free Campground offers 99 reservable sites. The campground remains open year round.
-          <br> Check in time: 2:00pm <br> Check out time: 12:00pm <br> Please read our <a href="about">rules and regulations</a> before making a reservation.</p>
-
-
-    <center>
-        <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap" title="Map of the campground" draggable="false">
-    </center>
-    <center>
-    <div class="textbody">
-        <h3>Please enter the details for your reservation below:</h3>
-        <hr width="100%" size="2">
-    </div>
-    <form id="reservationForm" action="/search" method="get">
-        <input type="hidden" id="start-date" name="startDate">
-        <input type="hidden" id="end-date" name="endDate">
-        
-        <label for="dateRange"> Select your stay dates:</label>
-        <input type="text" id="dateRange" name="dateRange" required>
-        <center>
-        <label for="sites">Select a type of campsite:</label>
-        <select name="sites" id="sites">
-            <option value="fullHookup">Full hookup</option>
-            <option value="waterAndElectric">Water and electric</option>
-            <option value="rustic">Rustic</option>
-        </select>
-      
-    
-    <br>
-        <button type="submit"><b>Search Availability</b></button>
-    </center>
-</center>
-    </form>
 </div>
-</main>
 
-<footer>
-    <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project.</p>
-</footer>
+<body>
+    <div class="textbody">
+        <center>
+            <h1>Reservations</h1>
+        </center>
+        <!--  <hr width="100%" size="2"> -->
+        <main>
 
-<!-- Flatpickr JS -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        flatpickr("#dateRange", {
-            mode: "range",
-            dateFormat: "m-d-Y",
-            minDate: "today"
+            <div class="textbody">
+                <h3>
+            </div>
+
+            </h3>
+            <p> Bug Free Campground offers 99 reservable sites. The campground remains open year round.
+                <br> Check in time: 2:00pm <br> Check out time: 12:00pm <br> Please read our <a href="about">rules and
+                    regulations</a> before making a reservation.
+            </p>
+
+
+            <center>
+                <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap" title="Map of the campground"
+                    draggable="false">
+            </center>
+            <center>
+                <div class="textbody">
+                    <h3>Please enter the details for your reservation below:</h3>
+                    <hr width="100%" size="2">
+                </div>
+                <form id="reservationForm" action="/search" method="get">
+                    <input type="hidden" id="start-date" name="startDate">
+                    <input type="hidden" id="end-date" name="endDate">
+
+                    <label for="dateRange"> Select your stay dates:</label>
+                    <input type="text" id="dateRange" name="dateRange" required>
+                    <center>
+                        <label for="sites">Select a type of campsite:</label>
+                        <select name="sites" id="sites">
+                            <option value="fullHookup">Full hookup</option>
+                            <option value="waterAndElectric">Water and electric</option>
+                            <option value="rustic">Rustic</option>
+                        </select>
+
+
+                        <br>
+                        <button type="submit"><b>Search Availability</b></button>
+                    </center>
+            </center>
+            </form>
+    </div>
+    </main>
+
+    <footer>
+        <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project.</p>
+    </footer>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#dateRange", {
+                mode: "range",
+                dateFormat: "m-d-Y",
+                minDate: "today"
+            });
+
+            document.getElementById('reservationForm').addEventListener('submit', function (event) {
+                const dateRangeInput = document.getElementById('dateRange').value.split(' to ');
+
+                if (dateRangeInput.length !== 2) {
+                    alert('Please select a valid date range.');
+                    event.preventDefault();
+                    return;
+                }
+
+                document.getElementById('start-date').value = dateRangeInput[0];
+                document.getElementById('end-date').value = dateRangeInput[1];
+            });
         });
-        
-        document.getElementById('reservationForm').addEventListener('submit', function(event) {
-            const dateRangeInput = document.getElementById('dateRange').value.split(' to ');
-            
-            if (dateRangeInput.length !== 2) {
-                alert('Please select a valid date range.');
-                event.preventDefault();
-                return;
-            }
-            
-            document.getElementById('start-date').value = dateRangeInput[0];
-            document.getElementById('end-date').value = dateRangeInput[1];
-        });
-    });
-</script>
+    </script>
 </body>
+
 </html>

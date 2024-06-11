@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
 
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
     <div class="topnav">
         <a href="home">Home</a>
@@ -37,10 +41,11 @@
                     <center>
                         <h1>Available Sites</h1>
                     </center>
-                    
+
                     <!-- Iterate over sites to display each site dynamically -->
-                    <div th:each="site : ${sites}" class="siteElement"> 
-                        <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image" title="Image of site"  draggable="false">
+                    <div th:each="site : ${sites}" class="siteElement">
+                        <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image"
+                            title="Image of site" draggable="false">
                         <div class="boxtext">
                             Site <span th:text="${site.site_id}">Site ID</span>
                             <br> Price: <span th:text="${site.cost_per_day}">price goes here</span>
@@ -58,9 +63,10 @@
                             </div>
                             <!-- End conditional rendering -->
 
-                            <button class="selectBtn" type="button" th:onclick="'select_siteId(' + ${site.site_id} + ')'">Select</button>
+                            <button class="selectBtn" type="button"
+                                th:onclick="'select_siteId(' + ${site.site_id} + ')'">Select</button>
                         </div>
-                    </div> 
+                    </div>
                     <!-- End iteration -->
 
                 </div>
@@ -75,7 +81,8 @@
                             <label for="email"><b>Enter your email:</b></label>
                             <input type="email" name="email" id="email" required placeholder="Email" />
                             <label for="phone"><b>Enter your phone number:</b></label>
-                            <input type="tel" id="phone" name="phone" pattern="\d{10}" required placeholder="1234567890" />
+                            <input type="tel" id="phone" name="phone" pattern="\d{10}" required
+                                placeholder="1234567890" />
 
                             <fieldset>
                                 <legend>Do you agree with the rules and regulations?</legend>
@@ -100,7 +107,7 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Retrieve the start date and end date from the URL query parameters
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -121,8 +128,8 @@
             document.getElementById('selectedSiteId').value = siteIdInt;
         }
     </script>
-    
+
     <script src="js/reservation.js"></script>
 </body>
-</html>
 
+</html>

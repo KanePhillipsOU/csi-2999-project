@@ -1,30 +1,15 @@
-document.querySelector('#revervation-submit-btn').addEventListener('click', loadSelectedSite)
-
-
-function loadSelectedSite(){
-
-   /* event.preventDefault() */
-
-    console.log("click registered"); 
-
-
- /*   fetch("/reservation",{
-        method: 'post',
-        headers:{'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            firstName: document.querySelector('#first-name').value,
-            lastName: document.querySelector('#last-name').value,
-            email: document.querySelector('#email').value,
-            phoneNumber: document.querySelector('#phone').value,
-            agreedToTerms: document.querySelector('#agreed-to-terms').checked
-        })
-    })
-    .then(response => response.text())
-    .then(responseMessage => {
-        console.log(responseMessage)
-    })
-    .catch(err => {
-        console.log(`error ${err}`)
-    }) */
-
+function handleButtonClick(event) {
+    const buttons = document.querySelectorAll('.selectBtn');
+    
+    buttons.forEach(button => {
+        button.classList.remove('clicked');
+    });
+    event.target.classList.add('clicked');
 }
+
+const buttons = document.querySelectorAll('.selectBtn');
+buttons.forEach(button => {
+    button.addEventListener('click', handleButtonClick);
+});
+
+//Added to new js file to avoid conflicts with other click requirements in reservation.js

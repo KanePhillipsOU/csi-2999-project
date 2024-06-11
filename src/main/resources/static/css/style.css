@@ -246,6 +246,7 @@ html {
 .split-section > div {
   width: 50%;
   margin: auto;
+  max-width: 700px;
 }
 
 #home-image-container {
@@ -493,6 +494,14 @@ input[type="submit"]:hover {
   html,
   body {
     display: block;
+  }
+
+  .split-section{
+    display: block;
+  }
+
+  .split-section > div{
+    width: 100%;
   }
 
   .iframe-container {

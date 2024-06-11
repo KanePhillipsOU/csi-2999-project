@@ -16,10 +16,6 @@
     clear: both;
   } 
 
-  .title {
-    /* font-family: "Garamond", serif; */
-    /*background-color: #DFDFDF; */
-  }
   form.form-example {
     display: table;
   }
@@ -108,61 +104,88 @@
 
   }
 
-  /* experiment 2 */
+  /* experiment 2  search page*/
 
   body, html {
     height: 100%;
     margin: 0;
+  }
 
-}
-.container {
+  .container {
     display: flex;
     min-height: 100vh; /* Ensure the container spans the full height of the screen */
-    flex-direction: column;
-  /*  align-items: center; */
+    flex-direction: column; 
+    align-items: center; 
 }
+
 .main {
-    margin: 0;
-    padding: 0;
-    
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+    max-width: 1200px; 
+    justify-content: center; 
+    align-items: center; 
 }
-/* content on left side of page */
+
 .sidebar {
     background-color: #f0f0f0;
-    float: none;
-    width: auto;  /*FIXME set to auto if bad */
+    width: 100%;  
+    max-width: 500px; 
+   
 }
-/* content on right side of page */
+
 .content {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
+    width: 100%; 
+    max-width: calc(100% - 40px); /* padding for image */
+    justify-content: center; 
 }
 
 .siteElement {
-  border: 5px white;
-  padding:10px;
-  background-color: #cfcfcf;
-  border-style: ridge;
-  object-fit: contain;
-  position: relative;
-  overflow: hidden;
-  padding-left: calc(40% + 10px);
+    border: 5px white ridge;
+    padding: 10px;
+    background-color: #cfcfcf;
+    position: relative;
+    overflow: hidden;
+    padding-left: calc(40% + 10px);
 }
 
 .siteElement img {
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 40%;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
-@media screen and (min-width:600px) {
-  .sidebar {width: 500px; float: left; margin-left: auto; margin-right:auto; display: block;  align-items: center;}
-  .content {width: auto;align-items: center;}
+@media screen and (min-width: 900px) { /* adjust if needed */
+    .container {
+        flex-direction: row; 
+        justify-content: center; 
+       
+    }
+    .main {
+        flex-direction: row; 
+        justify-content: center; 
+       
+    }
+    .sidebar {
+        width: 500px;
+        margin-left: 0;
+       /* margin-right: 20px; */
+        margin-bottom: 0; 
+        justify-content: center; 
+    }
+    .content {
+        width: auto;
+        flex: 1; 
+        max-width: 600px;
+        justify-content: center; 
+    }
 }
 
 .boxtext {
@@ -238,16 +261,23 @@
   line-height: 50px;
 }
 .img-slider {
-  animation: fadeInAnimation ease-in-out 2.7s;
+  animation: fadeInAnimation ease-in-out 2.2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-@keyframes fadeInAnimation {
+ @keyframes fadeInAnimation {
   0% {
-      opacity: 0;
+    filter: blur(10px);
+  }
+  6% {
+    opacity: 0;
+  }
+  25%{
+    filter: blur(7px);
   }
   100% {
-      opacity: 1;
+    opacity: 1;
+    filter: blur(0);
       
   }
 }
@@ -362,6 +392,24 @@ input[type=text] {
   opacity: .90;
   transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
   -webkit-transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  animation: 0.8s ease-out 0s 1 popOutAndFadeIn;
+}
+@keyframes popOutAndFadeIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  83% {
+    transform: scale(1.02);
+  }
+  100%{
+    transform: scale(1);
+    opacity: 0.90;
+  }
 }
 .parks-container > *:hover{
   opacity: 1;
@@ -370,9 +418,9 @@ input[type=text] {
 .parks-container img { 
   margin: auto;
   display: block;
-  width: 400px;
-  height: 250px;
-  border-radius: 5px;
+  width: 100%;  /* originally 400px */
+  height: 40%;  /* orignally 250px */
+  border-radius: 5px; /* 5px */
 }
 .parks-container a {
   text-decoration: none;
@@ -452,4 +500,15 @@ input[type="text"],
   .iframe-container iframe {
       width: 100%;
       height: 100%;
+  }
+
+  .callform {
+    display: inline-block;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    width: 320px;
+    height: auto;
   }

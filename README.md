@@ -1,5 +1,5 @@
 # CSI 2999 Project
-This is a five member group project done for Oakland University's Sophomore Project class. Our team chose to do a campsite reservation website. 
+This is a five member group project done for Oakland University's Sophomore Project class. Our team chose to do a campsite reservation website. A working demo can be seen [here](https://csi-2999-project.onrender.com/). Please wait a few minutes after clicking the link for the application to start up. 
 
 
 ## Why Campsite Reservation Software? 

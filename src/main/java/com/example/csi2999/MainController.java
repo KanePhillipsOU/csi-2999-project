@@ -25,7 +25,6 @@ public class MainController {
 
     @GetMapping("/")
     public String getStartup() {
-        System.out.println(supabaseClient.getSites());
         return "home";
     }
 

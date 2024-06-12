@@ -22,6 +22,8 @@ function changeImageOnSlider(){
         slider.children[i].style.transition = 'none'
         if(i !== sliderCurrentIndex - 1 && !(sliderCurrentIndex === 0 && i === slider.children.length - 1)){
             slider.children[i].style.opacity = 0
+            slider.children[i].style.transform = 'translateX(80px)'
+            slider.children[i].style.animation = 'none'
         }
     }
     
@@ -29,6 +31,7 @@ function changeImageOnSlider(){
     slider.children[sliderCurrentIndex].style.zIndex = 1
     slider.children[sliderCurrentIndex].style.opacity = 1
     slider.children[sliderCurrentIndex].style.transition = 'opacity 2s'
+    slider.children[sliderCurrentIndex].style.animation = 'slowMove linear 10s'
 
 
     setSilderClock()

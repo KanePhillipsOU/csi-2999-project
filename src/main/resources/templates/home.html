@@ -45,24 +45,25 @@
     </div>
     <div id="home-image-text-block">
       <h1>Our Campsites...</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat vero quod labore. In ratione, debitis ipsam
-        repudiandae eaque maxime, velit natus numquam fugit laudantium omnis incidunt qui accusantium dolorem dolores?
-      </p>
+      <p>Welcome to Bug Free Campground, nestled on the serene shores of Linux Lake.</p>
+      <div class="center-button">
+        <button class="block" onclick="location.href='reservations'">Make a Reservation</button>
+      </div>
     </div>
-  </section>
-  <section class="split-section">
-    <div>
-      <h2>About The Campground</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt eaque, accusantium delectus iste quibusdam
-        quis? Illum, delectus asperiores iusto esse recusandae aut quis? Dolorem, facilis error accusantium numquam
-        architecto vel.</p>
-    </div>
-    <div>
-      <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap" style="width:900px;height:562px;"
-        title="Map of the campground" draggable="false">
-    </div>
-  </section>
-
+      </section>
+      <section class="split-section">
+        <div>
+          <h2>About The Campground</h2>
+          <p>Choose from a variety of camping options, including fully rustic, water and electric, and full hookup sites. No matter your preference, you'll find the perfect spot to set up camp and enjoy the great outdoors!</p>
+        </div>
+        <div class="map-container">
+          <div class="map-zoom-container">
+            <img class="mapImg" src="images/campgroundmap.jpg" alt="mockmap" style="width:900px;height:562px;" title="Map of the campground" draggable="false">
+          </div>
+          <div class="overlay">Scroll to Zoom</div>
+        </div>
+              </section>
+    
   <!--
 
 
@@ -99,6 +100,7 @@
 
 
 <script src="js/slider.js"></script>
+<script src="js/zoom.js"></script>
 </body>
 
 </html>

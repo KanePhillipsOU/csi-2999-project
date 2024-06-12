@@ -554,3 +554,87 @@ input[type="submit"]:hover {
   background-color: #accef8;
   content: "Selected";
 }
+
+#home-image-text-block {
+  position: absolute;
+  height: 100vh;
+  width: 600px;
+  background: radial-gradient(rgba(172, 206, 248, 0.8), rgba(160, 201, 251, 0.8));
+  z-index: 2;
+  right: 0;
+  box-shadow: -3px 0 4px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#home-image-text-block > * {
+  color: white;
+  font-size: x-large;
+  line-height: 50px;
+}
+
+.center-button {
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.block {
+  display: inline-block;
+  width: auto;
+  border: none;
+  background-color: #accef8;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Map container to allow zoom */
+
+.map-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.map-zoom-container {
+  width: 100%;
+  max-width: 900px;
+  height: 562px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mapImg {
+  width: 100%;
+  height: auto;
+  transition: transform 0.25s ease;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent black background */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}

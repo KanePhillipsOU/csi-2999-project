@@ -231,10 +231,23 @@ html {
   height: 100%;
   opacity: 0;
   z-index: 0;
-
   top:-10px;
   transform: translateX(80px);
+  transform: scaleX(9);
+  transform-origin: right; 
 }
+@media (max-width: 1100px) {
+  .img-slider > img {
+    width: 200%;
+  }
+  #home-image-text-block{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+  }
+}
+
 
 @keyframes slowMove {
   0% {

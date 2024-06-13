@@ -560,13 +560,11 @@ input[type="submit"]:hover {
   border: none;
   padding: 5px;
   border-radius: 5px;
-  content: "Select";
 }
 
 /* Style for the button when clicked */
 .selectBtn.clicked {
   background-color: #accef8;
-  content: "Selected";
 }
 
 #home-image-text-block {

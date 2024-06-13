@@ -48,18 +48,18 @@
                             title="Image of site" draggable="false">
                         <div class="boxtext">
                             Site <span th:text="${site.site_id}">Site ID</span>
-                            <br> Price: <span th:text="${site.cost_per_day}">price goes here</span>
-                            <br> Description: <span th:text="${site.description}">description goes here</span>
+                            <br> Price Per Night: $ <span th:text="${site.cost_per_day}">price goes here</span>
+                            <br>  <span th:text="${site.description}">description goes here</span>
 
                             <!-- Conditional rendering for site type -->
                             <div th:if="${site.full_hookup}">
-                                Type: Full Hookup
+                                Full Hookup
                             </div>
                             <div th:if="${site.rustic}">
-                                Type: Rustic
+                                Rustic
                             </div>
                             <div th:if="${site.water_and_electric}">
-                                Type: Water and Electric
+                                Water and Electric
                             </div>
                             <!-- End conditional rendering -->
 

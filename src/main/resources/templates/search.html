@@ -25,15 +25,16 @@
         <a href="moreparks">More Parks</a>
         <b>Bug Free Campground</b>
     </div>
-
+    
     <h1 style="text-align: center;">Search Results</h1>
+    <hr width="100%" size="2">
     <h2 style="text-align: center;">Dates Selected:</h2>
     <center>
         <p>
             <span id="start-date"></span> to <span id="end-date"></span>
         </p>
     </center>
-
+    
     <main>
         <div class="container">
             <div class="main">
@@ -68,22 +69,23 @@
                         </div>
                     </div>
                     <!-- End iteration -->
-
+                    
                 </div>
                 <div class="content">
                     <form>
                         <center>
                             <h3>Please enter the required information to make a reservation</h3>
+                            <hr width="100%" size="2">
                             <label for="first-name"><b>Enter your first name:</b></label>
-                            <input type="text" name="firstName" id="first-name" required placeholder="First Name" />
+                            <input style="width: 100%; height: 30px; border-radius: 5px; border-color:black ;" type="text" name="firstName" id="first-name" required placeholder="First Name" />
                             <label for="last-name"><b>Enter your last name:</b></label>
-                            <input type="text" name="lastName" id="last-name" required placeholder="Last Name" />
+                            <input style="width: 100%; height: 30px; border-radius: 5px; border-color:black ;" type="text" name="lastName" id="last-name" required placeholder="Last Name" />
                             <label for="email"><b>Enter your email:</b></label>
-                            <input type="email" name="email" id="email" required placeholder="Email" />
+                            <input style="width: 100%; height: 30px; border-radius: 5px; border-color:black ;" type="email" name="email" id="email" required placeholder="Email" />
                             <label for="phone"><b>Enter your phone number:</b></label>
-                            <input type="tel" id="phone" name="phone" pattern="\d{10}" required
+                            <input style="width: 100%; height: 30px; border-radius: 5px; border-color:black ;" type="tel" id="phone" name="phone" pattern="\d {10}" required
                                 placeholder="1234567890" />
-
+                                
                             <fieldset>
                                 <legend>Do you agree with the rules and regulations?</legend>
                                 <label><input type="radio" id="agreed-to-terms" name="radio" value="yes" /> Yes</label>

@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    
 
 
 </head>
@@ -43,8 +44,8 @@
 
             </h3>
             <p> Bug Free Campground offers 99 reservable sites. The campground remains open year round.
-                <br> Check in time: 2:00pm <br> Check out time: 12:00pm <br> Please read our <a href="about">rules and
-                    regulations</a> before making a reservation.
+                <br> -Check in time: 2:00pm <br> -Check out time: 12:00pm <br> *Please read our <a href="about">rules and
+                    regulations</a> before making a reservation.*
             </p>
 
 
@@ -60,20 +61,20 @@
                 <form id="reservationForm" action="/search" method="get">
                     <input type="hidden" id="start-date" name="startDate">
                     <input type="hidden" id="end-date" name="endDate">
-
+                    
                     <label for="dateRange"> Select your stay dates:</label>
-                    <input type="text" id="dateRange" name="dateRange" required>
+                    <input type="text" id="dateRange" name="dateRange" required placeholder="MM-DD-YYYY to MM-DD-YYYY"
                     <center>
                         <label for="sites">Select a type of campsite:</label>
-                        <select name="sites" id="sites">
-                            <option value="fullHookup">Full hookup</option>
+                        <select name="sites" id="sites" style="width: auto;">
+                            <option value="fullHookup" >Full hookup</option>
                             <option value="waterAndElectric">Water and electric</option>
                             <option value="rustic">Rustic</option>
                         </select>
-
+                        
 
                         <br>
-                        <button type="submit"><b>Search Availability</b></button>
+                        <button type="submit" style="font-size: 15px; padding: 5px 30px; border-radius: 10px; background-color: #7ed0ff;"><b>Search Availability</b></button>
                     </center>
             </center>
             </form>
@@ -93,7 +94,7 @@
                 dateFormat: "m-d-Y",
                 minDate: "today"
             });
-
+            
             document.getElementById('reservationForm').addEventListener('submit', function (event) {
                 const dateRangeInput = document.getElementById('dateRange').value.split(' to ');
 

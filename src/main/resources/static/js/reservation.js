@@ -94,9 +94,17 @@ function makeReservation(event) {
                 endDate: endDate.value.trim(),
                 siteId: selectedSiteId.value.trim()
             };
-    
+            
             // Construct the alert message with reservation details
-            const alertMessage = `Reservation made successfully!\n\nDetails:\nFirst Name: ${reservationDetails.firstName}\nLast Name: ${reservationDetails.lastName}\nEmail: ${reservationDetails.email}\nPhone Number: ${reservationDetails.phoneNumber}\nStart Date: ${reservationDetails.startDate}\nEnd Date: ${reservationDetails.endDate}\nSite ID: ${reservationDetails.siteId}`;
+            const alertMessage = `  Attention Customers, please save this information for your records. Also, when arriving make sure to give the attendant your last name and email that was made with the reservation.
+            \nReservation made successfully!\n
+            Details:\n
+            First Name: ${reservationDetails.firstName}
+            Last Name: ${reservationDetails.lastName}
+            Email: ${reservationDetails.email}
+            Phone Number: ${reservationDetails.phoneNumber}
+            Start Date: ${reservationDetails.startDate}
+            End Date: ${reservationDetails.endDate}`;
     
             // Show the alert message
             alert(alertMessage);

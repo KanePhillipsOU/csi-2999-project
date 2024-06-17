@@ -7,7 +7,7 @@ function handleButtonClick(event) {
     event.target.classList.add('clicked');
     
     if ( window.innerWidth < 900){
-        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+        document.querySelector('form').scrollIntoView({ behavior: 'smooth' });
     }
 }
 

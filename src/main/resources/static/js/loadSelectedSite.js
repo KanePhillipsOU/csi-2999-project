@@ -5,6 +5,10 @@ function handleButtonClick(event) {
         button.classList.remove('clicked');
     });
     event.target.classList.add('clicked');
+    
+    if ( window.innerWidth < 900){
+        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+    }
 }
 
 const buttons = document.querySelectorAll('.selectBtn');

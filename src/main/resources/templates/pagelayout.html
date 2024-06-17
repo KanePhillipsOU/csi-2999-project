@@ -1,68 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .wrapper {
-      overflow: auto;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-    #main {
-      margin-left: 4px;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
-    #leftsidebar {
-      float: none;
-      width: auto;
-    }
 
-    #menulist {
-      margin: 0;
-      padding: 0;
-    }
-
-    .menuitem {
-      background: #CDF0F6;
-      border: 1px solid #d4d4d4;
-      border-radius: 4px;
-      list-style-type: none;
-      margin: 4px;
-      padding: 2px;
-    }
-
-    @media screen and (min-width: 480px) {
-      #leftsidebar {
-        width: 200px;
-        float: left;
-      }
-
-      #main {
-        margin-left: 216px;
-      }
-    }
-  </style>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
 
-  <div class="wrapper">
-    <div id="leftsidebar">
-      <ul id="menulist">
-        <li class="menuitem">Menu-item 1</li>
-        <li class="menuitem">Menu-item 2</li>
-        <li class="menuitem">Menu-item 3</li>
-        <li class="menuitem">Menu-item 4</li>
-        <li class="menuitem">Menu-item 5</li>
-      </ul>
+    <div class="topnav">
+        <a href="home">Home</a>
+        <a href="about">About</a>
+        <a href="reservations">Reservations</a>
+        <a class="active" href="moreparks"> More Parks</a>
+        <b> Bug Free Campground</b>
     </div>
 
-    <div id="main">
-      <h1>Resize the browser window to see the effect!</h1>
-      <p>This example shows a menu that will float to the left of the page if the viewport is 480 pixels wide or wider.
-        If the viewport is less than 480 pixels, the menu will be on top of the content.</p>
-    </div>
-  </div>
+    <main>
+        <div>
+            <h1 style="text-align: center;">More Parks</h1>
+        </div>
+        <div class="parks-container">
+            <a href="https://troynaturesociety.org/">
+                <section>
+                    <img src="images/frog.png" alt="Image of park">
+                    <h2>Stage Nature Center</h2>
+                    With friendly staff and miles of trails, Stage Nature Center has activities for the whole family. The
+                        park is full of deer, and houses a number of rescued owls.
+                </section>
+            </a>
+            <a href="https://romi.gov/facilities/facility/details/Tenhave-Woods-at-Quickstad-Park-33">
+                <section>
+                    <img src="images/trout.png" alt="Image of park">
+                    <h2>Tenhave Woods</h2>
+                    Tenhave Woods has 22 acres of protected land trails, a plethoral of wildflowers in the spring, mushrooms in the fall, and qr codes to learn more about nature.
+                </section>
+            </a>
+            <a href="https://www.metroparks.com/kensington-metropark/">
+                <section>
+                    <img src="images/geese.jpg" alt="Image of park">
+                    <h2>Kensington Metropark</h2>
+                    Come enjoy Kent Lake with beaches, fishing, boating, trails, and abundant wildlife.
+                    Also check out events at the nature center, golf, and disc golf. 
+                </section>
+            </a>
+            <a href="https://www.johnsonnaturecenter.org/">
+                <section>
+                    <img src="images/butterfly-flowers.jpg" alt="Image of park">
+                    <h2>Johnson Nature Center</h2>
+                    Check out Johnson Nature Center's forty-acres with views of lakes, miles of trails, and historical buildings on site.
+                </section>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+      <section class="split-section-footer">
+        <div class="footer-text" >
+        <h2> Bug Free Campground</h2>
+        <p>About This Project: This website was created in Summer 2024 for CSI 2999, Sophomore Project.</p> </div>
+      <div class="footer-text" ><address>Binary Boulevard <br> Pigeon Hole Praire, UI 16180</address> <br>
+      Email: <a href="mailto:bugfreeemail@email.email" class="hidehyperlink">bugfreeemail@email.email </a> <br> <br> Phone: <a href="tel:123-456-7890" class="hidehyperlink" >123-456-7890 </a></div>
+      </section>
+    </footer>
+
 
 </body>
 

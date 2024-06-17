@@ -43,6 +43,7 @@
                         <h1>Available Sites</h1>
                     </center>
 
+                    <div class="site-element-container">
                     <!-- Iterate over sites to display each site dynamically -->
                     <div th:each="site : ${sites}" class="siteElement">
                         <img class="img" th:src="@{'/images/' + ${site.site_id} + '.jpg'}" alt="Site Image"
@@ -68,6 +69,7 @@
                                 th:onclick="'select_siteId(' + ${site.site_id} + ')'">Select</button>
                         </div>
                     </div>
+                </div>
                     <!-- End iteration -->
                     
                 </div>

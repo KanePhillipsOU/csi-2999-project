@@ -48,9 +48,9 @@ function makeReservation(event) {
         phone.focus();
         return;
     }
-
+    
     if (!agreedToTerms.checked) {
-        alert('You must agree to the terms and conditions to make a reservation!');
+        alert('You must agree to the Rules and Regulations in order to make a reservation!');
         return;
     }
 
@@ -125,7 +125,7 @@ function makeReservation(event) {
 }
 
 function isValidEmail(email) {
-    // Enhanced regex for basic email validation
+    // Regex for basic email validation
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
 }

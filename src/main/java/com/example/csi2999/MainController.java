@@ -66,7 +66,7 @@ public class MainController {
         System.out.println("Converted sites: " + siteList.toString());
 
         // Filter the siteList based on the amenities specified in the 'sites' parameter
-        List<Site> filteredSites = filterSitesByAmenities(siteList, sites, startDate, endDate);
+        List<Site> filteredSites = filterSitesByAmenitiesAndAvailability(siteList, sites, startDate, endDate);
         System.out.println("Filtered sites: " + filteredSites.toString());
 
         // Add the filtered sites to the model
@@ -142,7 +142,7 @@ public class MainController {
 
     }
 
-    private List<Site> filterSitesByAmenities(List<Site> siteList, String amenities, String startDate, String endDate) {
+    private List<Site> filterSitesByAmenitiesAndAvailability(List<Site> siteList, String amenities, String startDate, String endDate) {
 
         JSONArray reservations = supabaseClient.getCustomers();
 

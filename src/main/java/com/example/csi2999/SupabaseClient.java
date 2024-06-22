@@ -25,15 +25,11 @@ public class SupabaseClient {
     @Value("${supabase.service_role}")
     private String authToken;
 
-    public JSONArray getReservations() {
-        return makeHttpGetRequest("Reservation", "");
-    }
-
     public JSONArray getSites() {
         return makeHttpGetRequest("Site", "");
     }
 
-    public JSONArray getCustomers() {
+    public JSONArray getReservations() {
         return makeHttpGetRequest("Customer", "");
     }
 

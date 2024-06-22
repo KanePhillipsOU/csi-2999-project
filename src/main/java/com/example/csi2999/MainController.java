@@ -144,7 +144,7 @@ public class MainController {
 
     private List<Site> filterSitesByAmenitiesAndAvailability(List<Site> siteList, String amenities, String startDate, String endDate) {
 
-        JSONArray reservations = supabaseClient.getCustomers();
+        JSONArray reservations = supabaseClient.getReservations();
 
         if (amenities == null || amenities.isEmpty()) {
             return siteList;

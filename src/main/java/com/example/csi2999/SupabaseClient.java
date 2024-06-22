@@ -26,23 +26,28 @@ public class SupabaseClient {
     private String authToken;
 
     public JSONArray getReservations() {
-        return makeHttpGetRequest("Reservation");
+        return makeHttpGetRequest("Reservation", "");
     }
 
     public JSONArray getSites() {
-        return makeHttpGetRequest("Site");
+        return makeHttpGetRequest("Site", "");
     }
 
     public JSONArray getCustomers() {
-        return makeHttpGetRequest("Customer");
+        return makeHttpGetRequest("Customer", "");
     }
 
-    private JSONArray makeHttpGetRequest(String tableName) {
+    public JSONArray getReservationsBySiteId(int siteId){
+        return makeHttpGetRequest("Customer", "?selected_site_id:eq:" + siteId);
+
+    }
+
+    private JSONArray makeHttpGetRequest(String tableName, String query) {
         JSONArray jsonArr = null;
 
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI(url + "/rest/v1/" + tableName))
+                .uri(new URI(url + "/rest/v1/" + tableName + query))
                 .timeout(Duration.ofSeconds(10))
                 .header("Content-Type", "application/json")
                 .header("apikey", apiKey)

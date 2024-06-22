@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,7 +66,7 @@ public class MainController {
         System.out.println("Converted sites: " + siteList.toString());
 
         // Filter the siteList based on the amenities specified in the 'sites' parameter
-        List<Site> filteredSites = filterSitesByAmenities(siteList, sites);
+        List<Site> filteredSites = filterSitesByAmenities(siteList, sites, startDate, endDate);
         System.out.println("Filtered sites: " + filteredSites.toString());
 
         // Add the filtered sites to the model
@@ -118,7 +120,32 @@ public class MainController {
         return siteList;
     }
 
-    private List<Site> filterSitesByAmenities(List<Site> siteList, String amenities) {
+    private boolean siteAvailable(Site site, JSONArray reservations, String startDate, String endDate){
+
+        for(int i = 0; i < reservations.length(); i++){
+            JSONObject reservation = reservations.getJSONObject(i);
+            if(reservation.getInt("selected_site_id") == site.getSite_id()){    
+
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("M-d-yyyy");
+
+                if(datesOverlap(LocalDate.parse(reservation.getString("start_date"), dateFormatter), LocalDate.parse(reservation.getString("end_date"), dateFormatter), LocalDate.parse(startDate, dateFormatter), LocalDate.parse(endDate, dateFormatter))){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean datesOverlap(LocalDate startDate1, LocalDate endDate1, LocalDate startDate2, LocalDate endDate2){
+        
+        return !(endDate1.isBefore(startDate2) || startDate1.isAfter(endDate2));
+
+    }
+
+    private List<Site> filterSitesByAmenities(List<Site> siteList, String amenities, String startDate, String endDate) {
+
+        JSONArray reservations = supabaseClient.getCustomers();
+
         if (amenities == null || amenities.isEmpty()) {
             return siteList;
         }
@@ -144,6 +171,9 @@ public class MainController {
                                 matches = false;
                         }
                         if (!matches) break;
+                    }
+                    if (!siteAvailable(site, reservations, startDate, endDate)) {
+                        matches = false;
                     }
                     System.out.println("Site: " + site.getName() + ", matches: " + matches);
                     return matches;

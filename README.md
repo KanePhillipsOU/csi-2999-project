@@ -9,3 +9,40 @@ In response to having used ineffective campsite reservation software in the past
 ## How it Was Made
 Our web application utilizes a Java/Spring Boot back-end and an HTML, CSS, and JavaScript front-end. Campsite and reservation data is stored in a remote PostgreSQL database which is accessed through PostgREST, a RESTful API. This allowed us to maintain a secure storage and transfer of customer data. Our template engine of choice was ThymeLeaf, which allowed us to quickly form user-friendly visuals of all campsite information. 
 Since our application had to be made in a short seven week time frame, our team used Jira to manage the assignment of tasks to each team member. Scrum methodologies were used to break our project into sprints which aided in keeping us all on track. We are currently on track to complete the project by June 23rd.
+
+
+## How to Run
+- Supabase
+  - Create a Supabase database, and run these queries:<br>
+  `create table
+    public."Site" (
+      site_id bigint generated always as identity,
+      name text null,
+      description text null,
+      picture_name text null,
+      full_hookup boolean null,
+      water_and_electric boolean null,
+      rustic boolean null,
+      cost_per_day double precision null,
+      constraint Site_pkey primary key (site_id)
+    ) tablespace pg_default;`
+  `create table
+    public."Customer" (
+      customer_id bigint generated always as identity,
+      created_at timestamp with time zone not null default now(),
+      first_name text null,
+      last_name text null,
+      email text null,
+      phone_number bigint null,
+      selected_site_id smallint null,
+      start_date text null,
+      end_date text null,
+      agreed_to_terms boolean null,
+      constraint Customer_pkey primary key (customer_id)
+    ) tablespace pg_default;`
+  - Add campsite information to the Site table
+- Application
+  - In `/src/main/java/resources` create an `application.properties` file
+  - Add `supabase.url`, `supabase.apikey`, and `supabase.service_role` to the file, and set their values
+  - Install Maven
+  - Run `mvn spring-boot:run`

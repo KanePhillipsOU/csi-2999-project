@@ -6,13 +6,12 @@ public class ReservationForm {
     private String lastName;
     private String email;
     private long phoneNumber;
-    private boolean agreedToTerms;
+    private Boolean agreedToTerms;
     private int selectedSiteId;
     private String startDate;
     private String endDate;
     private String startTime;
     private String endTime;
-    
 
     // Getter and setter for firstName
     public String getFirstName() {
@@ -51,11 +50,11 @@ public class ReservationForm {
     }
 
     // Getter and setter for agreedToTerms
-    public boolean isAgreedToTerms() {
-        return agreedToTerms;
+    public Boolean isAgreedToTerms() {
+        return agreedToTerms != null ? agreedToTerms : false;
     }
 
-    public void setAgreedToTerms(boolean agreedToTerms) {
+    public void setAgreedToTerms(Boolean agreedToTerms) {
         this.agreedToTerms = agreedToTerms;
     }
 

@@ -138,8 +138,10 @@ public class MainController {
             if (reservation.getInt("selected_site_id") == site.getSite_id()) {
                 LocalDate resStartDate = LocalDate.parse(reservation.getString("start_date"), dateFormatter);
                 LocalDate resEndDate = LocalDate.parse(reservation.getString("end_date"), dateFormatter);
-                LocalTime resStartTime = reservation.has("start_time") ? LocalTime.parse(reservation.getString("start_time")) : LocalTime.of(14, 0);
-                LocalTime resEndTime = reservation.has("end_time") ? LocalTime.parse(reservation.getString("end_time")) : LocalTime.of(12, 0);
+                
+                // Check if start_time and end_time are present
+                LocalTime resStartTime = reservation.isNull("start_time") ? LocalTime.of(14, 0) : LocalTime.parse(reservation.getString("start_time"));
+                LocalTime resEndTime = reservation.isNull("end_time") ? LocalTime.of(12, 0) : LocalTime.parse(reservation.getString("end_time"));
                 
                 LocalDateTime resStartDateTime = resStartDate.atTime(resStartTime);
                 LocalDateTime resEndDateTime = resEndDate.atTime(resEndTime);
@@ -148,7 +150,7 @@ public class MainController {
                 //System.out.println("Existing reservation end: " + resEndDateTime);
 
                 if (datesOverlap(resStartDateTime, resEndDateTime, newStartDateTime, newEndDateTime)) {
-                    //System.out.println("Overlap detected");
+                    System.out.println("Overlap detected");
                     return false;
                 }
             }
@@ -163,7 +165,7 @@ public class MainController {
     private List<Site> filterSitesByAmenitiesAndAvailability(List<Site> siteList, String amenities, String startDate, String endDate) {
         String[] amenitiesArray = amenities.split(",");
         JSONArray reservations = supabaseClient.getReservations();  // Fetch all reservations once
-    
+
         return siteList.stream()
                 .filter(site -> {
                     boolean matches = Arrays.stream(amenitiesArray)
@@ -186,4 +188,4 @@ public class MainController {
                 })
                 .collect(Collectors.toList());
     }
-    }
+}

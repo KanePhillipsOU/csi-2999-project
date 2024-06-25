@@ -33,11 +33,16 @@ public class SupabaseClient {
         return makeHttpGetRequest("Customer", "");
     }
 
-    public JSONArray getReservationsBySiteId(int siteId){
-        return makeHttpGetRequest("Customer", "?selected_site_id:eq:" + siteId);
-
+    public JSONArray getReservationsBySiteId(int siteId) {
+        return makeHttpGetRequest("Customer", "?selected_site_id=eq." + siteId);
     }
 
+    public JSONArray getReservationsBySiteAndDate(int siteId, String startDate, String endDate) {
+        String query = String.format("?selected_site_id=eq.%d&start_date=lte.%s&end_date=gte.%s", siteId, endDate, startDate);
+        //System.out.println("Querying reservations with: " + query);
+        return makeHttpGetRequest("Customer", query);
+    }
+    
     private JSONArray makeHttpGetRequest(String tableName, String query) {
         JSONArray jsonArr = null;
 
@@ -80,6 +85,8 @@ public class SupabaseClient {
                 "\"selected_site_id\":\"" + reservationForm.getSelectedSiteId() + "\"," +
                 "\"start_date\":\"" + reservationForm.getStartDate() + "\"," +
                 "\"end_date\":\"" + reservationForm.getEndDate() + "\"," +
+                "\"start_time\":\"" + (reservationForm.getStartTime() != null ? reservationForm.getStartTime() : "14:00") + "\"," +
+                "\"end_time\":\"" + (reservationForm.getEndTime() != null ? reservationForm.getEndTime() : "12:00") + "\"," +
                 "\"agreed_to_terms\":\"" + reservationForm.isAgreedToTerms() + "\"" +
                 "}";
     }

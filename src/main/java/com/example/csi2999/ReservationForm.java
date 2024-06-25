@@ -10,6 +10,8 @@ public class ReservationForm {
     private int selectedSiteId;
     private String startDate;
     private String endDate;
+    private String startTime;
+    private String endTime;
     
 
     // Getter and setter for firstName
@@ -82,5 +84,21 @@ public class ReservationForm {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getStartTime(){
+        return startTime != null ? startTime : "14:00";
+    }
+
+    public void setStartTime(String startTime){
+        this.startTime = startTime;
+    }
+
+    public String getEndTime(){
+        return endTime != null ? endTime : "12:00";
+    }
+
+    public void setEndTime(String endTime){
+        this.endTime = endTime;
     }
 }

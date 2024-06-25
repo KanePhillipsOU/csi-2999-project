@@ -3,7 +3,6 @@ package com.example.csi2999;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 @Controller
 public class MainController {
@@ -54,43 +55,45 @@ public class MainController {
     public String getPageLayout() {
         return "pagelayout";
     }
-    
+
     @GetMapping("/search")
     public String getSearch(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String sites, Model model) {
         // Fetch sites from the Supabase client
         JSONArray siteArray = supabaseClient.getSites();
-        System.out.println("Fetched sites: " + siteArray.toString());
+        //System.out.println("Fetched sites: " + siteArray.toString());
 
         // Convert JSONArray to a list of Site objects
         List<Site> siteList = convertJsonArrayToSiteList(siteArray);
-        System.out.println("Converted sites: " + siteList.toString());
+        //System.out.println("Converted sites: " + siteList.toString());
 
         // Filter the siteList based on the amenities specified in the 'sites' parameter
         List<Site> filteredSites = filterSitesByAmenitiesAndAvailability(siteList, sites, startDate, endDate);
-        System.out.println("Filtered sites: " + filteredSites.toString());
+        //System.out.println("Filtered sites: " + filteredSites.toString());
 
         // Add the filtered sites to the model
         model.addAttribute("sites", filteredSites);
-        System.out.println("Model attributes: " + model.asMap().toString());
+        //System.out.println("Model attributes: " + model.asMap().toString());
         return "search";
     }
 
-        
     @PostMapping("/reservation")
     public ResponseEntity<String> createReservation(@RequestBody ReservationForm reservationForm) {
+        JSONArray reservations = supabaseClient.getReservationsBySiteAndDate(
+                reservationForm.getSelectedSiteId(),
+                reservationForm.getStartDate(),
+                reservationForm.getEndDate()
+        );
 
-        boolean success = supabaseClient.createReservation(reservationForm);
-        if (success) {
-            return ResponseEntity.ok("Reservation successful.");
+        if (reservations.length() == 0) {
+            boolean success = supabaseClient.createReservation(reservationForm);
+            if (success) {
+                return ResponseEntity.ok("Reservation successful.");
+            } else {
+                return ResponseEntity.status(500).body("Reservation could not be processed.");
+            }
         } else {
-            return ResponseEntity.status(500).body("Reservation could not be processed.");
+            return ResponseEntity.status(400).body("Selected site is not available for the given dates.");
         }
-    }
-
-    @GetMapping("/thymeleaftest")
-    public String getThymeTest(Model model) {
-        model.addAttribute("message", "main controller message");
-        return "thymeleaftest";
     }
 
     private List<Site> convertJsonArrayToSiteList(JSONArray siteArray) {
@@ -120,15 +123,32 @@ public class MainController {
         return siteList;
     }
 
-    private boolean siteAvailable(Site site, JSONArray reservations, String startDate, String endDate){
+    private boolean siteAvailable(Site site, JSONArray reservations, String startDate, String endDate) {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("M-d-yyyy");
+        
+        LocalDateTime newStartDateTime = LocalDate.parse(startDate, dateFormatter).atTime(14, 0); // Default check-in time 2:00 PM
+        LocalDateTime newEndDateTime = LocalDate.parse(endDate, dateFormatter).atTime(12, 0); // Default check-out time 12:00 PM
 
-        for(int i = 0; i < reservations.length(); i++){
+        //System.out.println("Checking availability for site ID: " + site.getSite_id());
+        //System.out.println("New reservation start: " + newStartDateTime);
+        //System.out.println("New reservation end: " + newEndDateTime);
+
+        for (int i = 0; i < reservations.length(); i++) {
             JSONObject reservation = reservations.getJSONObject(i);
-            if(reservation.getInt("selected_site_id") == site.getSite_id()){    
+            if (reservation.getInt("selected_site_id") == site.getSite_id()) {
+                LocalDate resStartDate = LocalDate.parse(reservation.getString("start_date"), dateFormatter);
+                LocalDate resEndDate = LocalDate.parse(reservation.getString("end_date"), dateFormatter);
+                LocalTime resStartTime = reservation.has("start_time") ? LocalTime.parse(reservation.getString("start_time")) : LocalTime.of(14, 0);
+                LocalTime resEndTime = reservation.has("end_time") ? LocalTime.parse(reservation.getString("end_time")) : LocalTime.of(12, 0);
+                
+                LocalDateTime resStartDateTime = resStartDate.atTime(resStartTime);
+                LocalDateTime resEndDateTime = resEndDate.atTime(resEndTime);
 
-                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("M-d-yyyy");
+                //System.out.println("Existing reservation start: " + resStartDateTime);
+                //System.out.println("Existing reservation end: " + resEndDateTime);
 
-                if(datesOverlap(LocalDate.parse(reservation.getString("start_date"), dateFormatter), LocalDate.parse(reservation.getString("end_date"), dateFormatter), LocalDate.parse(startDate, dateFormatter), LocalDate.parse(endDate, dateFormatter))){
+                if (datesOverlap(resStartDateTime, resEndDateTime, newStartDateTime, newEndDateTime)) {
+                    //System.out.println("Overlap detected");
                     return false;
                 }
             }
@@ -136,53 +156,34 @@ public class MainController {
         return true;
     }
 
-    private boolean datesOverlap(LocalDate startDate1, LocalDate endDate1, LocalDate startDate2, LocalDate endDate2){
-        
-        return !(endDate1.isBefore(startDate2) || startDate1.isAfter(endDate2));
-
+    private boolean datesOverlap(LocalDateTime startDateTime1, LocalDateTime endDateTime1, LocalDateTime startDateTime2, LocalDateTime endDateTime2) {
+        return !(endDateTime1.isBefore(startDateTime2) || startDateTime1.isAfter(endDateTime2));
     }
 
     private List<Site> filterSitesByAmenitiesAndAvailability(List<Site> siteList, String amenities, String startDate, String endDate) {
-
-        JSONArray reservations = supabaseClient.getReservations();
-
-        if (amenities == null || amenities.isEmpty()) {
-            return siteList;
-        }
-
         String[] amenitiesArray = amenities.split(",");
-        System.out.println("Filtering amenities: " + Arrays.toString(amenitiesArray));
-
-        List<Site> filteredList = siteList.stream()
+        JSONArray reservations = supabaseClient.getReservations();  // Fetch all reservations once
+    
+        return siteList.stream()
                 .filter(site -> {
-                    boolean matches = true;
-                    for (String amenity : amenitiesArray) {
-                        switch (amenity.trim().toLowerCase()) {
-                            case "fullhookup":
-                                matches = matches && site.isFull_hookup();
-                                break;
-                            case "rustic":
-                                matches = matches && site.isRustic();
-                                break;
-                            case "waterandelectric":
-                                matches = matches && site.isWater_and_electric();
-                                break;
-                            default:
-                                matches = false;
-                        }
-                        if (!matches) break;
+                    boolean matches = Arrays.stream(amenitiesArray)
+                            .allMatch(amenity -> {
+                                switch (amenity.trim().toLowerCase()) {
+                                    case "fullhookup":
+                                        return site.isFull_hookup();
+                                    case "rustic":
+                                        return site.isRustic();
+                                    case "waterandelectric":
+                                        return site.isWater_and_electric();
+                                    default:
+                                        return false;
+                                }
+                            });
+                    if (matches) {
+                        matches = siteAvailable(site, reservations, startDate, endDate);
                     }
-                    if (!siteAvailable(site, reservations, startDate, endDate)) {
-                        matches = false;
-                    }
-                    System.out.println("Site: " + site.getName() + ", matches: " + matches);
                     return matches;
                 })
                 .collect(Collectors.toList());
-
-        System.out.println("Filtered sites: " + filteredList);
-        return filteredList;
     }
-
-
-}
+    }

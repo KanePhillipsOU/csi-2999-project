@@ -38,6 +38,8 @@ Since our application had to be made in a short seven week time frame, our team 
       start_date text null,
       end_date text null,
       agreed_to_terms boolean null,
+      start_time time without time zone null,
+      end_time time without time zone null,
       constraint Customer_pkey primary key (customer_id)
     ) tablespace pg_default;`
   - Add campsite information to the Site table

@@ -8,7 +8,7 @@ In response to having used ineffective campsite reservation software in the past
 
 ## How it Was Made
 Our web application utilizes a Java/Spring Boot back-end and an HTML, CSS, and JavaScript front-end. Campsite and reservation data is stored in a remote PostgreSQL database which is accessed through PostgREST, a RESTful API. This allowed us to maintain a secure storage and transfer of customer data. Our template engine of choice was ThymeLeaf, which allowed us to quickly form user-friendly visuals of all campsite information. 
-Since our application had to be made in a short seven week time frame, our team used Jira to manage the assignment of tasks to each team member. Scrum methodologies were used to break our project into sprints which aided in keeping us all on track. We are currently on track to complete the project by June 23rd.
+Since our application had to be made in a short seven week time frame, our team used Jira to manage the assignment of tasks to each team member. Scrum methodologies were used to break our project into sprints which aided in keeping us all on track. We were able to successfully complete the project by our projected end date, which was June 24th.
 
 
 ## How to Run
